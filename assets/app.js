@@ -12,9 +12,12 @@
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const tr = (value) => value && typeof value === 'object' && supported.some((key) => key in value) ? (value[language] || value.ko) : value;
-  const iconMarkup = (icon, extraClass = '') => icon === 'chat_bubble'
-    ? `<span class="chat-glyph ${extraClass}" aria-hidden="true"></span>`
-    : `<span class="mi ${extraClass}" aria-hidden="true">${icon}</span>`;
+  const iconMarkup = (icon, extraClass = '') => {
+    if (icon === 'chat_bubble') return `<span class="chat-glyph ${extraClass}" aria-hidden="true"></span>`;
+    if (icon === 'devices') return `<span class="facility-glyph ${extraClass}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>`;
+    if (icon === 'policy') return `<span class="ui-glyph ${extraClass}" aria-hidden="true">◇</span>`;
+    return `<span class="mi ${extraClass}" aria-hidden="true">${icon}</span>`;
+  };
 
   function applyTranslations() {
     document.documentElement.lang = language;
@@ -24,6 +27,10 @@
       if (value == null) return;
       if (value.includes('<br>')) node.innerHTML = value;
       else node.textContent = value;
+    });
+    $$('[data-i18n-placeholder]').forEach((node) => {
+      const value = tr(data.translations[node.dataset.i18nPlaceholder]);
+      if (value != null) node.placeholder = value;
     });
     $$('.language-menu button').forEach((button) => button.classList.toggle('active', button.dataset.lang === language));
     renderDrawer();
@@ -49,7 +56,7 @@
     document.body.classList.toggle('is-home', route === 'home');
     document.body.classList.toggle('body-inner', route !== 'home');
     $('#topbar').classList.toggle('scrolled', route !== 'home');
-    if (!options.fromHistory) history.pushState({ route }, '', route === 'home' ? location.pathname : `#${route}`);
+    if (!options.fromHistory) history.pushState({ route }, '', location.pathname + location.search);
     closeDrawer();
     closeLanguage();
     window.scrollTo({ top: 0, behavior: options.instant ? 'auto' : 'smooth' });
@@ -92,6 +99,34 @@
   function renderGallery(filter = 'all') {
     lightboxItems = data.gallery.filter((item) => filter === 'all' || item[1] === filter);
     $('#galleryGrid').innerHTML = lightboxItems.map((item, index) => `<button class="gallery-item" type="button" data-lightbox-index="${index}" aria-label="${tr(item[2])}"><img src="/assets/images/${item[0]}" alt="${tr(item[2])}" loading="lazy"></button>`).join('');
+  }
+
+  function renderSearchResults(query) {
+    const target = $('#conciergeResults');
+    const normalized = String(query || '').trim().toLocaleLowerCase(language);
+    if (!normalized) {
+      target.innerHTML = '';
+      return;
+    }
+    const routeKeywords = {
+      checkin: '체크인 입실 도어락 arrival entrance luggage 入住 チェックイン',
+      checkout: '체크아웃 퇴실 departure trash towel 退房 チェックアウト',
+      wifi: 'wifi wi-fi 인터넷 비밀번호 password network 无线 ネット',
+      transport: '교통 위치 주소 지하철 역 공항 주차 map subway airport parking 地铁 アクセス',
+      rules: '규칙 금연 소음 파티 취사 smoking quiet party rule 规则 ルール',
+      appliances: '가전 시설 tv 에어컨 세탁기 전자레인지 인덕션 appliance laundry climate 设备 家電',
+      gallery: '사진 객실 공간 침실 gallery room photo 房间 写真',
+      contact: '문의 호스트 도움 연락 contact host help 联系 問い合わせ'
+    };
+    const results = data.guideCards.filter((card) => {
+      const text = [card.route, tr(card.title), tr(card.text), routeKeywords[card.route] || ''].join(' ').toLocaleLowerCase(language);
+      return normalized.split(/\s+/).every((token) => text.includes(token));
+    }).slice(0, 4);
+    if (!results.length) {
+      target.innerHTML = `<button type="button" data-route="contact"><strong>${tr(data.translations.searchNoResult)}</strong><small>${tr(data.translations.searchContact)}</small></button>`;
+      return;
+    }
+    target.innerHTML = results.map((card) => `<button type="button" data-route="${card.route}"><strong>${tr(card.title)}</strong><small>${tr(card.text)}</small></button>`).join('');
   }
 
   function contentCard(item) {
@@ -151,7 +186,7 @@
     const item = lightboxItems[lightboxIndex];
     $('#lightboxImage').src = `/assets/images/${item[0]}`;
     $('#lightboxImage').alt = tr(item[2]);
-    $('#lightboxCaption').textContent = `${lightboxIndex + 1} / ${lightboxItems.length} · ${tr(item[2])}`;
+    $('#lightboxCaption').textContent = `${lightboxIndex + 1} / ${lightboxItems.length}`;
   }
 
   function shiftLightbox(delta) {
@@ -199,6 +234,8 @@
     }
     const lightboxButton = event.target.closest('[data-lightbox-index]');
     if (lightboxButton) openLightbox(Number(lightboxButton.dataset.lightboxIndex));
+    const heroShift = event.target.closest('[data-hero-shift]');
+    if (heroShift && heroReady) setHero(heroIndex + Number(heroShift.dataset.heroShift));
   });
 
   $('.menu-trigger').addEventListener('click', openDrawer);
@@ -215,7 +252,7 @@
   $('.lightbox-next').addEventListener('click', () => shiftLightbox(1));
   $('#lightbox').addEventListener('click', (event) => { if (event.target === $('#lightbox')) $('#lightbox').close(); });
   $('#lightbox').addEventListener('keydown', (event) => { if (event.key === 'ArrowLeft') shiftLightbox(-1); if (event.key === 'ArrowRight') shiftLightbox(1); });
-  window.addEventListener('popstate', () => navigate((location.hash || '#home').slice(1), { fromHistory: true, instant: true }));
+  window.addEventListener('popstate', (event) => navigate(event.state?.route || 'home', { fromHistory: true, instant: true }));
   window.addEventListener('scroll', () => { if (currentRoute === 'home') $('#topbar').classList.toggle('scrolled', window.scrollY > 52); }, { passive: true });
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeDrawer(); closeLanguage(); } });
 
@@ -223,15 +260,108 @@
   $('#lightbox').addEventListener('touchstart', (event) => { touchStart = event.touches[0].clientX; }, { passive: true });
   $('#lightbox').addEventListener('touchend', (event) => { const distance = event.changedTouches[0].clientX - touchStart; if (Math.abs(distance) > 45) shiftLightbox(distance > 0 ? -1 : 1); }, { passive: true });
 
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(() => {
-    if (currentRoute !== 'home') return;
-    $('#hero').classList.toggle('alt');
-    const alt = $('#hero').classList.contains('alt');
-    $$('.hero-counter span').forEach((node, index) => node.classList.toggle('active', index === (alt ? 1 : 0)));
-  }, 6200);
+  let heroReady = false;
+  let heroIndex = 0;
+  let heroPointerStart = null;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function setHero(index) {
+    heroIndex = (index + 2) % 2;
+    $('#hero').classList.toggle('alt', heroIndex === 1);
+    $$('.hero-counter span').forEach((node, itemIndex) => node.classList.toggle('active', itemIndex === heroIndex));
+  }
+
+  async function startHeroSequence() {
+    const hero = $('#hero');
+    const sources = ['/assets/images/hero-main-professional.webp', '/assets/images/hero-sub-professional.webp'];
+    await Promise.all(sources.map((src) => {
+      const image = new Image();
+      image.src = src;
+      return typeof image.decode === 'function' ? image.decode().catch(() => {}) : Promise.resolve();
+    }));
+    hero.classList.add('sequence-started');
+    if (reduceMotion) {
+      heroReady = true;
+      hero.classList.add('ready');
+      return;
+    }
+    setTimeout(() => setHero(1), 1920);
+    setTimeout(() => setHero(0), 4220);
+    setTimeout(() => {
+      heroReady = true;
+      hero.classList.add('ready');
+    }, 5520);
+  }
+
+  function initIntroAndHero() {
+    const intro = $('#brandIntro');
+    if (reduceMotion || sessionStorage.getItem('staynemo-intro-seen') === '1') {
+      intro.classList.add('hidden');
+      startHeroSequence();
+      return;
+    }
+    document.body.classList.add('intro-active');
+    intro.classList.add('run');
+    sessionStorage.setItem('staynemo-intro-seen', '1');
+    setTimeout(() => intro.classList.add('leaving'), 3048);
+    setTimeout(() => {
+      intro.classList.add('hidden');
+      document.body.classList.remove('intro-active');
+      startHeroSequence();
+    }, 3240);
+  }
+
+  function initMotion() {
+    const selector = '.concierge-section,.intro,.quick-section,.stay-signature,.editorial-room-preview,.location-teaser,.home-guide-section,.ota-section,.content-card,.guide-card,.appliance-card,.rule-item';
+    const mediaSelector = '.signature-photo,.editorial-mosaic button,.room-card,.gallery-item,.photo-card,.appliance-photo';
+    const observer = 'IntersectionObserver' in window && !reduceMotion
+      ? new IntersectionObserver((entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      }), { threshold: 0.1, rootMargin: '0px 0px -5% 0px' })
+      : null;
+    const observe = (root = document) => {
+      $$(selector, root).forEach((node, index) => {
+        if (node.dataset.motionObserved === 'true') return;
+        node.dataset.motionObserved = 'true';
+        node.classList.add('motion-item');
+        node.style.setProperty('--stagger', `${Math.min(index, 7) * 45}ms`);
+        if (observer) observer.observe(node); else node.classList.add('is-visible');
+      });
+      $$(mediaSelector, root).forEach((node) => node.classList.add('motion-media'));
+    };
+    observe();
+    new MutationObserver((records) => {
+      if (records.some((record) => record.addedNodes.length)) observe();
+    }).observe($('#main'), { childList: true, subtree: true });
+  }
+
+  $('#conciergeForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+    renderSearchResults($('#conciergeInput').value);
+  });
+  $('#conciergeInput').addEventListener('input', (event) => {
+    if (!event.target.value.trim()) $('#conciergeResults').innerHTML = '';
+  });
+  $('#hero').addEventListener('pointerdown', (event) => { if (heroReady) heroPointerStart = event.clientX; });
+  $('#hero').addEventListener('pointerup', (event) => {
+    if (heroPointerStart == null) return;
+    const delta = event.clientX - heroPointerStart;
+    heroPointerStart = null;
+    if (Math.abs(delta) >= 42) setHero(heroIndex + (delta < 0 ? 1 : -1));
+  });
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted && !heroReady) startHeroSequence();
+  });
 
   applyTranslations();
   renderOta();
-  navigate((location.hash || '#home').slice(1), { fromHistory: true, instant: true });
+  const initialRoute = history.state?.route || 'home';
+  history.replaceState({ route: initialRoute }, '', location.pathname + location.search);
+  navigate(initialRoute, { fromHistory: true, instant: true });
+  initMotion();
+  initIntroAndHero();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('/sw.js').catch(() => {});
 })();

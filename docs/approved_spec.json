@@ -17,8 +17,21 @@
   },
   "homeImages": {
     "main": "공용부_07.jpg",
-    "sub": "공용부_04.jpg"
+    "sub": "공용부_04.jpg",
+    "productionMain": "hero-main-professional.webp",
+    "productionSub": "hero-sub-professional.webp",
+    "treatment": "Professional hospitality-photo color, exposure and lens correction; sub image additionally leveled and keystone-corrected."
   },
+  "logo": {
+    "sourceReferences": ["front-door.jpg", "ground-door.jpg", "elevator-floor3.jpg"],
+    "productionAsset": "logo-staynemo.svg",
+    "method": "Vector reconstruction of the installed property signage."
+  },
+  "masterParity": {
+    "primaryMaster": "ANOTHER HOUSE",
+    "requiredHomeElements": ["first-session logo intro", "two-image timed hero", "concierge search", "stay essentials", "editorial room mosaic", "location", "frequent guide links", "OTA help panel", "brand footer"]
+  },
+  "indexing": "public_marketing_site",
   "languages": ["ko", "en", "ja", "zh"],
   "galleryCategories": ["common", "NEMO", "HADA"],
   "otaBehavior": "Show Coming Soon while URL is null; activate automatically when URL is supplied.",
@@ -29,5 +42,6 @@
     "publicEntrancePassword": false,
     "contactMethod": "booking platform messages"
   },
-  "sitePurpose": ["marketing", "guest guide"]
+  "sitePurpose": ["marketing", "guest guide"],
+  "approvedRevision": "2026-08-11 master parity and photographic refinement"
 }

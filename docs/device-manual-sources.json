@@ -1,0 +1,10 @@
+{
+  "verifiedAt": "2026-08-11",
+  "devices": [
+    {"name":"Samsung Smart TV","model":"KU43F6050FFXKR","basis":"client source and control photo","guideType":"concise photo-based guest steps"},
+    {"name":"LG TROMM washer","model":"FY9WTB","basis":"client source and appliance photo","guideType":"concise photo-based guest steps"},
+    {"name":"Haatz induction cooktop","model":null,"basis":"client source and appliance photo","guideType":"safety-first photo-based guest steps"},
+    {"name":"Cooing microwave","model":null,"basis":"client source and appliance photo","guideType":"safety-first photo-based guest steps"},
+    {"name":"System air conditioner","model":null,"basis":"wall-control photos","guideType":"control-photo guest steps"}
+  ]
+}

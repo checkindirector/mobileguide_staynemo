@@ -6,5 +6,13 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f4f0e8",
-  "theme_color": "#42413e"
+  "theme_color": "#42413e",
+  "icons": [
+    {
+      "src": "/assets/images/logo-staynemo-symbol.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 230" role="img" aria-label="STAY NEMO">
+  <g fill="none" stroke="#42413E" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M34 91c49-4 91-26 136-69 45 43 87 65 136 69" stroke-width="9"/>
+    <path d="M48 112c44-6 83-27 122-65 39 38 78 59 122 65" stroke-width="7"/>
+    <path d="M69 105v58M271 105v58" stroke-width="8"/>
+  </g>
+  <g fill="#42413E">
+    <rect x="142" y="104" width="24" height="24" rx="2"/>
+    <rect x="174" y="104" width="24" height="24" rx="2"/>
+    <rect x="142" y="136" width="24" height="24" rx="2"/>
+    <rect x="174" y="136" width="24" height="24" rx="2"/>
+  </g>
+</svg>

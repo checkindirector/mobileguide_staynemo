@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" role="img" aria-labelledby="title desc">
+  <title id="title">STAY NEMO MYEONGDONG</title>
+  <desc id="desc">The house-roof and four-pane window logo reproduced from the STAY NEMO property signage.</desc>
+  <g fill="none" stroke="#42413E" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M135 120c58-5 111-31 165-83 54 52 107 78 165 83" stroke-width="11"/>
+    <path d="M151 145c53-8 101-32 149-78 48 46 96 70 149 78" stroke-width="9"/>
+    <path d="M176 137v67M424 137v67" stroke-width="10"/>
+  </g>
+  <g fill="#42413E">
+    <rect x="267" y="132" width="28" height="28" rx="3"/>
+    <rect x="305" y="132" width="28" height="28" rx="3"/>
+    <rect x="267" y="170" width="28" height="28" rx="3"/>
+    <rect x="305" y="170" width="28" height="28" rx="3"/>
+    <text x="300" y="267" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="700" letter-spacing="8">STAY NEMO</text>
+    <rect x="112" y="301" width="82" height="3"/>
+    <rect x="406" y="301" width="82" height="3"/>
+    <text x="300" y="309" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="4">MYEONGDONG</text>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+{
+  "verifiedAt": "2026-08-11",
+  "sources": [
+    {"source":"숙소정보 문서","targets":["home","checkin","checkout","wifi","transport","rules","appliances","contact"],"status":"used"},
+    {"source":"숙소사진/공용부","targets":["hero","home story","gallery"],"status":"used"},
+    {"source":"숙소사진/NEMO","targets":["home editorial mosaic","gallery"],"status":"used"},
+    {"source":"숙소사진/HADA","targets":["home editorial mosaic","gallery"],"status":"used"},
+    {"source":"숙소사진/출입·교통","targets":["checkin","transport","logo reference"],"status":"used"},
+    {"source":"숙소사진/기기","targets":["appliances"],"status":"used"},
+    {"source":"개인 연락처·출입 비밀번호","targets":[],"status":"excluded_with_reason","reason":"Public privacy and security policy"},
+    {"source":"OTA URLs","targets":["home OTA panel"],"status":"pending_confirmation","reason":"Listings are not live yet; UI remains Coming Soon"}
+  ]
+}

@@ -10,7 +10,7 @@ graphite `#42413E`, walnut `#6D4A34`, brass mustard `#B08A4A`, and deep ink
 - Google Drive `스테이 네모_숙소정보`: 숙소명, 주소, 수용 인원, 침대·욕실 수, 체크인·체크아웃, 교통, 출입 동선, Wi-Fi, 숙소 규칙, 가전 모델 정보
 - Google Drive `숙소사진` 43장: 홈 히어로, 공간 갤러리, 체크인·교통·가전 안내
 - 사용자 지정 홈 이미지: `공용부_07.jpg`(메인), `공용부_04.jpg`(서브)
-- Another House production repository: 모바일 정보 구조, 화면 전환, 다국어, 갤러리, PWA 패턴만 참고
+- Primary Master production repository: 모바일 정보 구조, 화면 전환, 다국어, 갤러리, PWA 패턴을 기준으로 대조
 
 ## Protected or intentionally omitted
 

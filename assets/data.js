@@ -18,6 +18,14 @@
     translations: {
       heroEyebrow: L('SEOUL PRIVATE STAY', 'SEOUL PRIVATE STAY', 'SEOUL PRIVATE STAY', 'SEOUL PRIVATE STAY'),
       heroLine: L('네모난 방, 둥글게 모이는 우리', 'Square rooms, a circle of us', '四角い部屋で、輪になる私たち', '方正的房间，团聚的我们'),
+      conciergeKicker: L('STAY NEMO CONCIERGE', 'STAY NEMO CONCIERGE', 'STAY NEMO CONCIERGE', 'STAY NEMO CONCIERGE'),
+      conciergeTitle: L('무엇을 도와드릴까요?', 'How can we help?', '何をお探しですか？', '需要什么帮助？'),
+      conciergePlaceholder: L('체크인, 교통, Wi-Fi를 검색해 보세요', 'Search check-in, transport, Wi-Fi', 'チェックイン・交通・Wi-Fiを検索', '搜索入住、交通或 Wi-Fi'),
+      searchNoResult: L('정확한 안내를 찾지 못했습니다.', 'We could not find an exact guide.', '該当する案内が見つかりませんでした。', '未找到准确指南。'),
+      searchContact: L('예약 플랫폼 메시지로 호스트에게 문의해 주세요.', 'Please message the host through your booking platform.', '予約サイトのメッセージでホストへお問い合わせください。', '请通过预订平台消息联系房东。'),
+      appliancesShort: L('시설 이용', 'Facilities', '設備利用', '设施使用'),
+      frequentTitle: L('투숙 중 자주 찾는 정보', 'Frequently needed during your stay', '滞在中によく使う案内', '入住期间常用信息'),
+      rulesShort: L('숙소 이용 안내', 'House guide', '宿泊ルール', '住宿指南'),
       viewSpace: L('공간 보기', 'View the space', '空間を見る', '查看空间'), guestGuide: L('이용 안내', 'Guest guide', 'ご利用案内', '住宿指南'),
       welcomeTitle: L('아무도 아닌 여행자에서<br>소중한 누군가로', 'From a nameless traveler<br>to someone who matters', '名もない旅人から<br>大切な誰かへ', '从无名的旅人<br>成为珍贵的某个人'),
       welcomeBody: L('라틴어 ‘Nemo’는 아무도 아닌 사람을 뜻합니다. 낯선 도시에서 이 문을 여는 순간, 스테이 네모는 당신을 가장 소중한 누군가로 맞이합니다.', 'In Latin, “Nemo” means nobody. The moment you open this door in an unfamiliar city, Stay NEMO welcomes you as someone who truly matters.', 'ラテン語の「Nemo」は「誰でもない人」。見知らぬ街でこの扉を開けた瞬間、Stay NEMOはあなたを大切な「誰か」として迎えます。', '拉丁语“Nemo”意为“无名之人”。在陌生城市推开这扇门的瞬间，Stay NEMO 会把你当作最珍贵的“某个人”来迎接。'),
@@ -52,8 +60,8 @@
       { route:'contact', icon:'chat_bubble', title:L('호스트 문의', 'Contact host', 'ホストに連絡', '联系房东'), text:L('예약 플랫폼 메시지 이용', 'Use your booking platform message', '予約サイトのメッセージを利用', '通过预订平台消息联系'), color:'dark' }
     ],
     gallery: [
-      ['common-07.webp','common',L('다이닝 라운지', 'Dining lounge', 'ダイニングラウンジ', '用餐休闲区')],
-      ['common-04.webp','common',L('주방과 다이닝', 'Kitchen & dining', 'キッチン＆ダイニング', '厨房与餐厅')],
+      ['hero-main-professional.webp','common',L('다이닝 라운지', 'Dining lounge', 'ダイニングラウンジ', '用餐休闲区')],
+      ['hero-sub-professional.webp','common',L('주방과 다이닝', 'Kitchen & dining', 'キッチン＆ダイニング', '厨房与餐厅')],
       ['common-01.webp','common',L('공용 공간', 'Living space', '共用空間', '公共空间')],
       ['common-02.webp','common',L('함께 머무는 자리', 'A place to gather', '集う場所', '相聚之处')],
       ['common-03.webp','common',L('프라이빗 라운지', 'Private lounge', 'プライベートラウンジ', '私人休闲区')],
@@ -62,10 +70,21 @@
       ['room-nemo-01.webp','nemo',L('NEMO · 퀸 베드 2', 'NEMO · 2 queen beds', 'NEMO・クイーン2台', 'NEMO · 2 张大床')],
       ['room-nemo-03.webp','nemo',L('NEMO 룸', 'NEMO room', 'NEMOルーム', 'NEMO 房间')],
       ['room-nemo-06.webp','nemo',L('NEMO 휴식 공간', 'NEMO resting space', 'NEMOのくつろぎ', 'NEMO 休息空间')],
+      ['room-nemo-02.webp','nemo',L('NEMO 침실', 'NEMO bedroom', 'NEMO ベッドルーム', 'NEMO 卧室')],
+      ['room-nemo-04.webp','nemo',L('NEMO 침실 디테일', 'NEMO bedroom detail', 'NEMO 寝室のディテール', 'NEMO 卧室细节')],
+      ['room-nemo-05.webp','nemo',L('NEMO 객실', 'NEMO room view', 'NEMO 客室', 'NEMO 客房')],
+      ['room-nemo-07.webp','nemo',L('NEMO 휴식', 'NEMO rest area', 'NEMO くつろぎ', 'NEMO 休息区')],
+      ['room-nemo-08.webp','nemo',L('NEMO 공간', 'NEMO space', 'NEMO 空間', 'NEMO 空间')],
+      ['room-nemo-09.webp','nemo',L('NEMO 수납 공간', 'NEMO storage', 'NEMO 収納', 'NEMO 收纳空间')],
+      ['room-nemo-10.webp','nemo',L('NEMO 객실 디테일', 'NEMO room detail', 'NEMO 客室のディテール', 'NEMO 客房细节')],
       ['room-nemo-11.webp','nemo',L('NEMO 디테일', 'NEMO details', 'NEMOのディテール', 'NEMO 细节')],
+      ['room-nemo-12.webp','nemo',L('NEMO 전경', 'NEMO overview', 'NEMO 全景', 'NEMO 全景')],
       ['room-hada-01.webp','hada',L('HADA · 퀸 베드 3', 'HADA · 3 queen beds', 'HADA・クイーン3台', 'HADA · 3 张大床')],
+      ['room-hada-02.webp','hada',L('HADA 침실', 'HADA bedroom', 'HADA ベッドルーム', 'HADA 卧室')],
       ['room-hada-03.webp','hada',L('HADA 룸', 'HADA room', 'HADAルーム', 'HADA 房间')],
-      ['room-hada-05.webp','hada',L('HADA 디테일', 'HADA details', 'HADAのディテール', 'HADA 细节')]
+      ['room-hada-04.webp','hada',L('HADA 객실', 'HADA room view', 'HADA 客室', 'HADA 客房')],
+      ['room-hada-05.webp','hada',L('HADA 디테일', 'HADA details', 'HADAのディテール', 'HADA 细节')],
+      ['room-hada-06.webp','hada',L('HADA 전경', 'HADA overview', 'HADA 全景', 'HADA 全景')]
     ],
     content: {
       checkin: [
