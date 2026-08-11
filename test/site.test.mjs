@@ -37,7 +37,7 @@ test('approved brand palette and cache revision are applied', () => {
   }
   assert.equal(approved.approvalStatus, 'approved');
   assert.equal(approved.homeImages.main, '공용부_07.jpg');
-  assert.match(serviceWorker, /staynemo-v3/);
+  assert.match(serviceWorker, /staynemo-v4/);
   assert.match(html, /brand-intro-overlay/);
   assert.match(html, /logo-staynemo\.svg/);
   assert.match(css, /hero-main-professional\.webp/);

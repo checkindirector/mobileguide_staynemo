@@ -1,5 +1,5 @@
-const CACHE = 'staynemo-v3';
-const CORE = ['/', '/index.html', '/assets/styles.css', '/assets/data.js', '/assets/app.js', '/manifest.webmanifest', '/assets/fonts/oxanium-latin.woff2', '/assets/fonts/material-symbols-outlined.woff2', '/assets/images/logo-staynemo.svg', '/assets/images/logo-staynemo-symbol.svg', '/assets/images/hero-main-professional.webp', '/assets/images/hero-sub-professional.webp'];
+const CACHE = 'staynemo-v4';
+const CORE = ['/', '/index.html', '/assets/styles.css?v=4', '/assets/data.js?v=4', '/assets/app.js?v=4', '/manifest.webmanifest', '/assets/fonts/oxanium-latin.woff2', '/assets/fonts/material-symbols-outlined.woff2', '/assets/images/logo-staynemo.svg', '/assets/images/logo-staynemo-symbol.svg', '/assets/images/hero-main-professional.webp', '/assets/images/hero-sub-professional.webp'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting())));
 self.addEventListener('activate', event => event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', event => {
