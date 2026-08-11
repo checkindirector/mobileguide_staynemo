@@ -36,12 +36,12 @@
   "galleryCategories": ["common", "NEMO", "HADA"],
   "otaBehavior": "Show Coming Soon while URL is null; activate automatically when URL is supplied.",
   "privacy": {
-    "publicPhone": false,
+    "publicPhone": true,
     "publicEmail": false,
     "publicMessengerId": false,
     "publicEntrancePassword": false,
-    "contactMethod": "booking platform messages"
+    "contactMethod": "direct host phone call and booking platform messages"
   },
   "sitePurpose": ["marketing", "guest guide"],
-  "approvedRevision": "2026-08-11 master parity and photographic refinement"
+  "approvedRevision": "2026-08-11 readability, combined arrival/departure guide, horizontal hero, direct phone, and OTA footer"
 }

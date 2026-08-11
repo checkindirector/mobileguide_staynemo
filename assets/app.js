@@ -49,6 +49,7 @@
   }
 
   function navigate(route, options = {}) {
+    if (route === 'checkout') route = 'checkin';
     if (!document.querySelector(`[data-screen="${route}"]`)) route = 'home';
     currentRoute = route;
     $$('.screen').forEach((screen) => screen.classList.toggle('active', screen.dataset.screen === route));
@@ -83,16 +84,19 @@
   }
 
   function renderGuides() {
-    $('#guideGrid').innerHTML = data.guideCards.map((card) => `<button type="button" class="guide-card ${card.color}" data-route="${card.route}">${iconMarkup(card.icon)}<strong>${tr(card.title)}</strong><small>${tr(card.text)}</small></button>`).join('');
+    $('#guideGrid').innerHTML = data.guideCards.map((card) => {
+      const route = card.route === 'checkout' ? 'checkin' : card.route;
+      return `<button type="button" class="guide-card ${card.color}" data-route="${route}">${iconMarkup(card.icon)}<strong>${tr(card.title)}</strong><small>${tr(card.text)}</small></button>`;
+    }).join('');
   }
 
   function renderOta() {
     const platforms = [
-      ['airbnb', 'Airbnb'], ['booking', 'Booking.com'], ['agoda', 'Agoda'], ['trip', 'Trip.com']
+      ['airbnb', 'Airbnb', 'airbnb.svg'], ['booking', 'Booking.com', 'booking-com.svg'], ['agoda', 'Agoda', 'agoda.svg'], ['trip', 'Trip.com', 'trip-com.svg']
     ];
-    $('#otaGrid').innerHTML = platforms.map(([key, name]) => {
+    $('#otaGrid').innerHTML = platforms.map(([key, name, logo]) => {
       const ready = Boolean(config.otaLinks[key]);
-      return `<button type="button" class="ota-button ${ready ? 'ready' : ''}" data-ota="${key}"><span><span class="ota-name">${name}</span><span class="ota-status">${ready ? 'OPEN' : 'COMING SOON'}</span></span><span class="mi">${ready ? 'north_east' : 'schedule'}</span></button>`;
+      return `<button type="button" class="ota-button ${ready ? 'ready' : ''}" data-ota="${key}" aria-label="${name} ${ready ? 'OPEN' : 'COMING SOON'}"><img src="/assets/images/platforms/${logo}" alt="${name}"><span class="ota-status">${ready ? 'OPEN' : 'COMING SOON'}</span></button>`;
     }).join('');
   }
 
@@ -141,11 +145,45 @@
     return '';
   }
 
+  function renderStayFlow() {
+    const target = $('#checkinContent');
+    if (!target) return;
+    target.innerHTML = `
+      <article class="stay-flow-overview">
+        <span class="mi">schedule</span>
+        <div><small>${tr(data.translations.stayTimes)}</small><strong>${tr(data.translations.stayTimesValue)}</strong></div>
+      </article>
+      <section class="stay-flow-group">
+        <header><span class="mi">login</span><div><small>SELF CHECK-IN</small><h2>${tr(data.translations.selfCheckin)}</h2></div></header>
+        <div class="stay-flow-content">${data.content.checkin.map(contentCard).join('')}</div>
+      </section>
+      <section class="stay-flow-group">
+        <header><span class="mi">logout</span><div><small>DEPARTURE</small><h2>${tr(data.translations.departure)}</h2></div></header>
+        <div class="stay-flow-content">${data.content.checkout.map(contentCard).join('')}</div>
+      </section>`;
+  }
+
+  function renderWifi() {
+    const target = $('#wifiContent');
+    if (!target) return;
+    const wifiItems = data.content.wifi.filter((item) => item.type === 'wifi');
+    const otherItems = data.content.wifi.filter((item) => item.type !== 'wifi');
+    target.innerHTML = `
+      <section class="wifi-network-section">
+        <h2>${tr(data.translations.wifiNetwork)}</h2>
+        <div class="wifi-network-grid">${wifiItems.map((item) => `<article class="wifi-network-card"><span class="mi">wifi</span><div><small>${tr(item.label)}</small><strong>${item.title}</strong></div><code>${item.password}</code><button class="copy-button" type="button" data-copy="${item.title} / ${item.password}">${tr(data.translations.wifiCopy)}</button></article>`).join('')}</div>
+      </section>
+      ${otherItems.map(contentCard).join('')}`;
+  }
+
   function renderAllContent() {
     Object.entries(data.content).forEach(([name, items]) => {
+      if (name === 'checkin' || name === 'checkout' || name === 'wifi') return;
       const target = $(`#${name}Content`);
       if (target) target.innerHTML = items.map(contentCard).join('');
     });
+    renderStayFlow();
+    renderWifi();
   }
 
   function renderAppliances() {

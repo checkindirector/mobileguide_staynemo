@@ -17,7 +17,7 @@
   <link rel="icon" href="/assets/images/logo-staynemo-symbol.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="preload" href="/assets/images/hero-main-professional.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="/assets/styles.css?v=4">
+  <link rel="stylesheet" href="/assets/styles.css?v=6">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"LodgingBusiness","name":"STAY NEMO","alternateName":"스테이 네모","address":{"@type":"PostalAddress","streetAddress":"을지로3가 291-37","addressLocality":"중구","addressRegion":"서울특별시","addressCountry":"KR"},"numberOfRooms":2,"occupancy":{"@type":"QuantitativeValue","maxValue":10}}
   </script>
@@ -91,7 +91,7 @@
           </div>
           <div class="essential-grid">
             <button type="button" data-route="checkin"><span class="mi">login</span><small data-i18n="checkin">체크인</small><strong>16:00</strong></button>
-            <button type="button" data-route="checkout"><span class="mi">logout</span><small data-i18n="checkout">체크아웃</small><strong>11:00</strong></button>
+            <button type="button" data-route="checkin"><span class="mi">logout</span><small data-i18n="checkout">체크아웃</small><strong>11:00</strong></button>
             <button type="button" data-route="transport"><span class="mi">subway</span><small data-i18n="station">가까운 역</small><strong data-i18n="stationValue">을지로3가</strong></button>
             <button type="button" data-route="wifi"><span class="mi">wifi</span><small>Wi-Fi</small><strong data-i18n="wifiValue">바로 연결</strong></button>
           </div>
@@ -134,25 +134,22 @@
           <p class="section-label">STAY GUIDE</p>
           <h2 data-i18n="frequentTitle">투숙 중 자주 찾는 정보</h2>
           <div class="home-guide-links">
-            <button type="button" data-route="checkin"><span class="mi">login</span><strong data-i18n="checkinGuide">체크인 안내</strong><span class="mi">chevron_right</span></button>
+            <button type="button" data-route="checkin"><span class="mi">login</span><strong data-i18n="checkinOutGuide">체크인 · 체크아웃 안내</strong><span class="mi">chevron_right</span></button>
             <button type="button" data-route="appliances"><span class="facility-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span><strong data-i18n="appliancesTitle">가전·시설 안내</strong><span class="mi">chevron_right</span></button>
             <button type="button" data-route="rules"><span class="ui-glyph" aria-hidden="true">◇</span><strong data-i18n="rulesShort">숙소 이용 안내</strong><span class="mi">chevron_right</span></button>
             <button type="button" data-route="contact"><span class="chat-glyph" aria-hidden="true"></span><strong data-i18n="contactHost">호스트에게 문의하기</strong><span class="mi">chevron_right</span></button>
           </div>
         </section>
 
-        <section class="ota-section section-pad">
-          <p class="section-label">BOOK YOUR STAY</p>
-          <h2 data-i18n="otaTitle">곧 예약이 열립니다</h2>
-          <p data-i18n="otaBody">예약 플랫폼 등록을 준비하고 있습니다. 버튼은 링크가 연결되는 즉시 활성화됩니다.</p>
-          <div class="ota-grid" id="otaGrid" aria-label="예약 플랫폼"></div>
-        </section>
-
         <footer class="home-footer">
           <img class="footer-logo" src="/assets/images/logo-staynemo.svg" alt="STAY NEMO MYEONGDONG">
+          <div class="footer-booking">
+            <span>BOOK YOUR STAY</span>
+            <div class="ota-grid" id="otaGrid" aria-label="예약 플랫폼"></div>
+          </div>
           <p data-i18n="address">서울시 중구 을지로3가 291-37 · 3층</p>
-          <button type="button" data-route="contact" data-i18n="contactHost">호스트에게 문의하기</button>
-          <small>© 2026 STAY NEMO</small>
+          <a class="footer-phone" href="tel:01059043538"><span class="mi">call</span><span><small data-i18n="callHost">호스트에게 바로 전화하기</small><strong>010-5904-3538</strong></span></a>
+          <small>2026 STAY NEMO</small>
         </footer>
       </section>
 
@@ -172,8 +169,7 @@
         <div class="gallery-grid page-pad" id="galleryGrid"></div>
       </section>
 
-      <section class="screen inner-screen" data-screen="checkin"><div class="page-photo"><img src="/assets/images/building-entrance.webp" alt="스테이 네모 건물 입구"><div><p class="section-label">ARRIVAL</p><h1 data-i18n="checkinGuide">체크인 안내</h1></div></div><div class="content-stack page-pad" id="checkinContent"></div></section>
-      <section class="screen inner-screen" data-screen="checkout"><div class="page-hero mustard"><p class="section-label">DEPARTURE</p><h1 data-i18n="checkoutGuide">체크아웃 안내</h1><strong>11:00</strong></div><div class="content-stack page-pad" id="checkoutContent"></div></section>
+      <section class="screen inner-screen" data-screen="checkin"><div class="page-photo"><img src="/assets/images/building-entrance.webp" alt="스테이 네모 건물 입구"><div><p class="section-label">SELF CHECK-IN / OUT</p><h1 data-i18n="checkinOutGuide">체크인 · 체크아웃 안내</h1></div></div><div class="content-stack page-pad stay-flow-stack" id="checkinContent"></div></section>
       <section class="screen inner-screen" data-screen="wifi"><div class="page-hero dark wifi-hero"><span class="mi">wifi</span><p class="section-label">STAY CONNECTED</p><h1>Wi-Fi</h1></div><div class="content-stack page-pad" id="wifiContent"></div></section>
       <section class="screen inner-screen" data-screen="transport"><div class="page-photo"><img src="/assets/images/exterior-from-exit8.webp" alt="을지로3가역 8번 출구에서 바라본 스테이 네모 건물"><div><p class="section-label">GETTING HERE</p><h1 data-i18n="transportTitle">오시는 길</h1></div></div><div class="content-stack page-pad" id="transportContent"></div></section>
       <section class="screen inner-screen" data-screen="rules"><div class="page-hero brown"><p class="section-label">HOUSE RULES</p><h1 data-i18n="rulesTitle">모두가 편안한<br>머무름을 위해</h1></div><div class="content-stack page-pad" id="rulesContent"></div></section>
@@ -199,7 +195,7 @@
 
   <dialog class="lightbox" id="lightbox"><button class="lightbox-close" type="button" aria-label="사진 닫기"><span class="mi">close</span></button><button class="lightbox-prev" type="button" aria-label="이전 사진"><span class="mi">chevron_left</span></button><figure><img id="lightboxImage" alt=""><figcaption id="lightboxCaption"></figcaption></figure><button class="lightbox-next" type="button" aria-label="다음 사진"><span class="mi">chevron_right</span></button></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="/assets/data.js?v=4"></script>
-  <script src="/assets/app.js?v=4"></script>
+  <script src="/assets/data.js?v=6"></script>
+  <script src="/assets/app.js?v=6"></script>
 </body>
 </html>

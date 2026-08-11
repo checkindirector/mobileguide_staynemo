@@ -37,9 +37,14 @@ test('approved brand palette and cache revision are applied', () => {
   }
   assert.equal(approved.approvalStatus, 'approved');
   assert.equal(approved.homeImages.main, '공용부_07.jpg');
-  assert.match(serviceWorker, /staynemo-v4/);
+  assert.match(serviceWorker, /staynemo-v6/);
   assert.match(html, /brand-intro-overlay/);
   assert.match(html, /logo-staynemo\.svg/);
   assert.match(css, /hero-main-professional\.webp/);
   assert.match(css, /hero-sub-professional\.webp/);
+  assert.match(css, /translate3d\(100%,0,0\)/);
+  assert.match(css, /wifi-network-grid/);
+  assert.match(html, /tel:01059043538/);
+  assert.match(html, /checkinOutGuide/);
+  for (const logo of ['airbnb.svg', 'booking-com.svg', 'agoda.svg', 'trip-com.svg']) assert.match(app, new RegExp(logo.replace('.', '\\.')));
 });

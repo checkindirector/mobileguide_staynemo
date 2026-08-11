@@ -11,11 +11,23 @@
     maps: {
       naver: 'https://map.naver.com/p/entry/address/3zihYH,2AM0Fm,%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EC%A4%91%EA%B5%AC%20%EC%9D%84%EC%A7%80%EB%A1%9C3%EA%B0%80%20291-37?c=15.00,0,0,0,dh',
       google: 'https://www.google.co.kr/maps/place/%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C+%EC%A4%91%EA%B5%AC+%EC%9D%84%EC%A7%80%EB%A1%9C3%EA%B0%80+291-37/data=!3m1!4b1!4m6!3m5!1s0x357ca2e3e0364611:0x302eecf11346acf6!8m2!3d37.5655962!4d126.9929351!16s%2Fg%2F11bzdm7t9m'
+    },
+    contact: {
+      phone: '01059043538',
+      displayPhone: '010-5904-3538'
     }
   };
 
   window.STAY_NEMO_DATA = {
     translations: {
+      checkinOutGuide: L('체크인 · 체크아웃 안내', 'Check-in · Check-out guide', 'チェックイン・チェックアウト案内', '入住 · 退房指南'),
+      stayTimes: L('이용 시간', 'Stay times', '利用時間', '入住时间'),
+      stayTimesValue: L('체크인 16:00 · 체크아웃 11:00', 'Check-in 16:00 · Check-out 11:00', 'チェックイン 16:00・チェックアウト 11:00', '入住 16:00 · 退房 11:00'),
+      selfCheckin: L('셀프 체크인', 'Self check-in', 'セルフチェックイン', '自助入住'),
+      departure: L('체크아웃 안내', 'Departure guide', 'チェックアウト案内', '退房指南'),
+      callHost: L('호스트에게 바로 전화하기', 'Call the host', 'ホストに電話する', '致电房东'),
+      wifiNetwork: L('Wi-Fi 네트워크', 'Wi-Fi networks', 'Wi-Fi ネットワーク', 'Wi-Fi 网络'),
+      wifiCopy: L('복사', 'Copy', 'コピー', '复制'),
       heroEyebrow: L('SEOUL PRIVATE STAY', 'SEOUL PRIVATE STAY', 'SEOUL PRIVATE STAY', 'SEOUL PRIVATE STAY'),
       heroLine: L('네모난 방, 둥글게 모이는 우리', 'Square rooms, a circle of us', '四角い部屋で、輪になる私たち', '方正的房间，团聚的我们'),
       conciergeKicker: L('STAY NEMO CONCIERGE', 'STAY NEMO CONCIERGE', 'STAY NEMO CONCIERGE', 'STAY NEMO CONCIERGE'),
@@ -47,7 +59,7 @@
       readySoon: L('예약 페이지를 준비하고 있습니다.', 'The booking page is being prepared.', '予約ページを準備中です。', '预订页面正在准备中。'), copied: L('복사했습니다.', 'Copied.', 'コピーしました。', '已复制。')
     },
     menu: [
-      ['home', 'home', 'home'], ['gallery', 'photo_library', 'gallery'], ['guide', 'menu_book', 'guide'], ['checkin', 'login', 'checkinGuide'], ['checkout', 'logout', 'checkoutGuide'], ['wifi', 'wifi', 'Wi-Fi'], ['transport', 'map', 'transportTitle'], ['rules', 'policy', 'rulesTitle'], ['appliances', 'devices', 'appliancesTitle'], ['contact', 'chat_bubble', 'contactTitle']
+      ['home', 'home', 'home'], ['gallery', 'photo_library', 'gallery'], ['guide', 'menu_book', 'guide'], ['checkin', 'login', 'checkinOutGuide'], ['wifi', 'wifi', 'Wi-Fi'], ['transport', 'map', 'transportTitle'], ['rules', 'policy', 'rulesTitle'], ['appliances', 'devices', 'appliancesTitle'], ['contact', 'chat_bubble', 'contactTitle']
     ],
     guideCards: [
       { route:'checkin', icon:'login', title:L('체크인', 'Check-in', 'チェックイン', '入住'), text:L('16:00 · 비대면 도어락', '16:00 · Self check-in', '16:00・セルフチェックイン', '16:00 · 自助入住'), color:'mustard' },
