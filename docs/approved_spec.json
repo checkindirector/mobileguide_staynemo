@@ -1,0 +1,33 @@
+{
+  "project": "STAY NEMO mobile website and guest guide",
+  "approvalStatus": "approved",
+  "approvedAt": "2026-08-11",
+  "brand": {
+    "name": "STAY NEMO",
+    "eyebrow": "SEOUL PRIVATE STAY",
+    "taglineKo": "네모난 방, 둥글게 모이는 우리",
+    "palette": {
+      "warmCream": "#F4F0E8",
+      "graphite": "#42413E",
+      "walnut": "#6D4A34",
+      "brassMustard": "#B08A4A",
+      "deepInk": "#26231F"
+    },
+    "recommendedRatio": "50 / 25 / 15 / 10"
+  },
+  "homeImages": {
+    "main": "공용부_07.jpg",
+    "sub": "공용부_04.jpg"
+  },
+  "languages": ["ko", "en", "ja", "zh"],
+  "galleryCategories": ["common", "NEMO", "HADA"],
+  "otaBehavior": "Show Coming Soon while URL is null; activate automatically when URL is supplied.",
+  "privacy": {
+    "publicPhone": false,
+    "publicEmail": false,
+    "publicMessengerId": false,
+    "publicEntrancePassword": false,
+    "contactMethod": "booking platform messages"
+  },
+  "sitePurpose": ["marketing", "guest guide"]
+}

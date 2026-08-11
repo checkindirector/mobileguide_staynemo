@@ -1,4 +1,4 @@
-const CACHE = 'staynemo-v1';
+const CACHE = 'staynemo-v2';
 const CORE = ['/', '/index.html', '/assets/styles.css', '/assets/data.js', '/assets/app.js', '/assets/fonts/oxanium-latin.woff2', '/assets/fonts/material-symbols-outlined.woff2', '/assets/images/common-07.webp', '/assets/images/common-04.webp'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting())));
 self.addEventListener('activate', event => event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())));

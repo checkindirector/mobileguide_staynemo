@@ -1,5 +1,10 @@
 # Source inventory
 
+The final brand, content, privacy, language, image, and OTA decisions are frozen in
+`docs/approved_spec.json`. The approved visual system uses warm cream `#F4F0E8`,
+graphite `#42413E`, walnut `#6D4A34`, brass mustard `#B08A4A`, and deep ink
+`#26231F`.
+
 ## Used
 
 - Google Drive `스테이 네모_숙소정보`: 숙소명, 주소, 수용 인원, 침대·욕실 수, 체크인·체크아웃, 교통, 출입 동선, Wi-Fi, 숙소 규칙, 가전 모델 정보

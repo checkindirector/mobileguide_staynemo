@@ -12,6 +12,9 @@
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const tr = (value) => value && typeof value === 'object' && supported.some((key) => key in value) ? (value[language] || value.ko) : value;
+  const iconMarkup = (icon, extraClass = '') => icon === 'chat_bubble'
+    ? `<span class="chat-glyph ${extraClass}" aria-hidden="true"></span>`
+    : `<span class="mi ${extraClass}" aria-hidden="true">${icon}</span>`;
 
   function applyTranslations() {
     document.documentElement.lang = language;
@@ -68,12 +71,12 @@
   function renderDrawer() {
     $('#drawerNav').innerHTML = data.menu.map(([route, icon, label]) => {
       const text = data.translations[label] ? tr(data.translations[label]) : label;
-      return `<button type="button" data-route="${route}"><span class="mi">${icon}</span><span>${text.replace(/<br>/g, ' ')}</span><span class="mi">chevron_right</span></button>`;
+      return `<button type="button" data-route="${route}">${iconMarkup(icon)}<span>${text.replace(/<br>/g, ' ')}</span><span class="mi">chevron_right</span></button>`;
     }).join('');
   }
 
   function renderGuides() {
-    $('#guideGrid').innerHTML = data.guideCards.map((card) => `<button type="button" class="guide-card ${card.color}" data-route="${card.route}"><span class="mi">${card.icon}</span><strong>${tr(card.title)}</strong><small>${tr(card.text)}</small></button>`).join('');
+    $('#guideGrid').innerHTML = data.guideCards.map((card) => `<button type="button" class="guide-card ${card.color}" data-route="${card.route}">${iconMarkup(card.icon)}<strong>${tr(card.title)}</strong><small>${tr(card.text)}</small></button>`).join('');
   }
 
   function renderOta() {
@@ -95,7 +98,7 @@
     if (item.type === 'notice') return `<article class="content-card notice"><h2>${tr(item.title)}</h2><p>${tr(item.text)}</p></article>`;
     if (item.type === 'steps') return `<article class="content-card"><h2>${tr(item.title)}</h2><ol class="steps-list">${item.items.map((entry) => `<li>${tr(entry)}</li>`).join('')}</ol></article>`;
     if (item.type === 'photo') return `<article class="content-card photo-card"><img src="/assets/images/${item.image}" alt="${tr(item.title)}" loading="lazy"><h2>${tr(item.title)}</h2></article>`;
-    if (item.type === 'card') return `<article class="content-card"><span class="mi card-icon">${item.icon}</span><h2>${tr(item.title)}</h2><p>${tr(item.text)}</p></article>`;
+    if (item.type === 'card') return `<article class="content-card">${iconMarkup(item.icon, 'card-icon')}<h2>${tr(item.title)}</h2><p>${tr(item.text)}</p></article>`;
     if (item.type === 'wifi') return `<article class="content-card wifi-card"><h2>${item.title}</h2><p>${tr(item.label)}</p><div class="wifi-row"><code>${item.password}</code><button class="copy-button" type="button" data-copy="${item.password}">${language === 'ko' ? '복사' : 'COPY'}</button></div></article>`;
     if (item.type === 'destination') return `<article class="content-card"><span class="mi card-icon">location_on</span><h2>${item.title}</h2><p>${tr(item.address)}</p></article>`;
     if (item.type === 'actions') return `<div class="map-actions"><a href="${config.maps.naver}" target="_blank" rel="noopener noreferrer">NAVER MAP <span class="mi">north_east</span></a><a href="${config.maps.google}" target="_blank" rel="noopener noreferrer">GOOGLE MAP <span class="mi">north_east</span></a></div>`;
