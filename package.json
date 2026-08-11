@@ -1,0 +1,11 @@
+{
+  "name": "mobileguide-staynemo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npx serve .",
+    "build": "node scripts/validate.mjs",
+    "test": "node --test test/site.test.mjs"
+  },
+  "devDependencies": {}
+}

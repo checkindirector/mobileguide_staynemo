@@ -1,0 +1,10 @@
+{
+  "name": "STAY NEMO Guest Guide",
+  "short_name": "STAY NEMO",
+  "description": "스테이 네모 모바일 숙소 안내",
+  "lang": "ko",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f0e8",
+  "theme_color": "#26231f"
+}
