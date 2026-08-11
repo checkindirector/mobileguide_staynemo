@@ -7,6 +7,8 @@
   let currentRoute = 'home';
   let lightboxItems = [];
   let lightboxIndex = 0;
+  const galleryState = { gallery: 0, bathroom: 0 };
+  const bathroomFiles = new Set(['room-nemo-08.webp', 'room-nemo-09.webp', 'room-nemo-10.webp', 'room-nemo-11.webp', 'room-nemo-12.webp', 'room-hada-05.webp', 'room-hada-06.webp']);
   let toastTimer;
 
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -35,7 +37,8 @@
     $$('.language-menu button').forEach((button) => button.classList.toggle('active', button.dataset.lang === language));
     renderDrawer();
     renderGuides();
-    renderGallery($('.gallery-tabs [aria-selected=true]')?.dataset.gallery || 'all');
+    renderGallery('gallery');
+    renderGallery('bathroom');
     renderAllContent();
     renderAppliances();
     renderOta();
@@ -96,13 +99,82 @@
     ];
     $('#otaGrid').innerHTML = platforms.map(([key, name, logo]) => {
       const ready = Boolean(config.otaLinks[key]);
-      return `<button type="button" class="ota-button ${ready ? 'ready' : ''}" data-ota="${key}" aria-label="${name} ${ready ? 'OPEN' : 'COMING SOON'}"><img src="/assets/images/platforms/${logo}" alt="${name}"><span class="ota-status">${ready ? 'OPEN' : 'COMING SOON'}</span></button>`;
+      return `<button type="button" class="platform-logo-button ${ready ? 'ready' : ''}" data-ota="${key}" aria-label="${name}"><img src="/assets/images/platforms/${logo}" alt="${name}"></button>`;
     }).join('');
   }
 
-  function renderGallery(filter = 'all') {
-    lightboxItems = data.gallery.filter((item) => filter === 'all' || item[1] === filter);
-    $('#galleryGrid').innerHTML = lightboxItems.map((item, index) => `<button class="gallery-item" type="button" data-lightbox-index="${index}" aria-label="${tr(item[2])}"><img src="/assets/images/${item[0]}" alt="${tr(item[2])}" loading="lazy"></button>`).join('');
+  function galleryItems(route) {
+    return data.gallery.filter((item) => route === 'bathroom' ? bathroomFiles.has(item[0]) : !bathroomFiles.has(item[0]));
+  }
+
+  function bathroomTitle(file) {
+    const titles = {
+      'room-nemo-08.webp': { ko:'NEMO 세면 공간', en:'NEMO vanity', ja:'NEMO 洗面スペース', zh:'NEMO 洗漱区' },
+      'room-nemo-09.webp': { ko:'NEMO 샤워실 입구', en:'NEMO shower room entrance', ja:'NEMO シャワールーム入口', zh:'NEMO 淋浴间入口' },
+      'room-nemo-10.webp': { ko:'NEMO 화장실 입구', en:'NEMO toilet entrance', ja:'NEMO トイレ入口', zh:'NEMO 卫生间入口' },
+      'room-nemo-11.webp': { ko:'NEMO 샤워실', en:'NEMO shower room', ja:'NEMO シャワールーム', zh:'NEMO 淋浴间' },
+      'room-nemo-12.webp': { ko:'NEMO 화장실', en:'NEMO toilet', ja:'NEMO トイレ', zh:'NEMO 卫生间' },
+      'room-hada-05.webp': { ko:'HADA 욕실', en:'HADA bathroom', ja:'HADA バスルーム', zh:'HADA 浴室' },
+      'room-hada-06.webp': { ko:'HADA 화장실 입구', en:'HADA bathroom entrance', ja:'HADA バスルーム入口', zh:'HADA 浴室入口' }
+    };
+    return tr(titles[file]);
+  }
+
+  function galleryItemTitle(route, item) {
+    return route === 'bathroom' ? bathroomTitle(item[0]) : tr(item[2]);
+  }
+
+  function animateGalleryImage(screen, direction) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const image = $('[data-gallery-main]', screen);
+    const className = direction === 'prev' ? 'gallery-image-prev' : 'gallery-image-next';
+    image.classList.remove('gallery-image-next', 'gallery-image-prev');
+    void image.offsetWidth;
+    image.classList.add(className);
+    image.addEventListener('animationend', () => image.classList.remove(className), { once: true });
+  }
+
+  function selectGallery(route, index, animate = false) {
+    const screen = $(`[data-gallery-screen="${route}"]`);
+    const items = galleryItems(route);
+    if (!screen || !items.length) return;
+    const previous = galleryState[route] || 0;
+    const next = (index + items.length) % items.length;
+    galleryState[route] = next;
+    $$('[data-gallery-index]', screen).forEach((button, buttonIndex) => {
+      const active = buttonIndex === next;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-selected', String(active));
+    });
+    const item = items[next];
+    const image = $('[data-gallery-main]', screen);
+    image.src = `/assets/images/${item[0]}`;
+    image.alt = galleryItemTitle(route, item);
+    $('[data-gallery-title]', screen).textContent = galleryItemTitle(route, item);
+    $('[data-gallery-count]', screen).textContent = `${next + 1} / ${items.length}`;
+    if (animate && previous !== next) {
+      animateGalleryImage(screen, next > previous || (previous === items.length - 1 && next === 0) ? 'next' : 'prev');
+      $$('[data-gallery-index]', screen)[next]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  }
+
+  function renderGallery(route = 'gallery') {
+    const screen = $(`[data-gallery-screen="${route}"]`);
+    if (!screen) return;
+    const items = galleryItems(route);
+    $('[data-gallery-thumbs]', screen).innerHTML = items.map((item, index) => `<button class="gallery-thumb ${index === galleryState[route] ? 'active' : ''}" type="button" role="option" aria-selected="${index === galleryState[route]}" data-gallery-route="${route}" data-gallery-index="${index}"><img src="/assets/images/${item[0]}" alt="${galleryItemTitle(route, item)}" loading="lazy"></button>`).join('');
+    selectGallery(route, galleryState[route], false);
+  }
+
+  function openGalleryLightbox(route) {
+    lightboxItems = galleryItems(route);
+    openLightbox(galleryState[route]);
+  }
+
+  function openPhoneDialog() {
+    $('#phoneNumber').textContent = config.contact.displayPhone;
+    $('#phoneCallAction').href = `tel:${config.contact.phone}`;
+    $('#phoneDialog').showModal();
   }
 
   function renderSearchResults(query) {
@@ -264,14 +336,24 @@
       copyText(copyButton.dataset.copy);
       return;
     }
-    const galleryTab = event.target.closest('[data-gallery]');
-    if (galleryTab) {
-      $$('.gallery-tabs button').forEach((button) => button.setAttribute('aria-selected', button === galleryTab ? 'true' : 'false'));
-      renderGallery(galleryTab.dataset.gallery);
+    const galleryThumb = event.target.closest('[data-gallery-index]');
+    if (galleryThumb) {
+      selectGallery(galleryThumb.dataset.galleryRoute, Number(galleryThumb.dataset.galleryIndex), true);
       return;
     }
-    const lightboxButton = event.target.closest('[data-lightbox-index]');
-    if (lightboxButton) openLightbox(Number(lightboxButton.dataset.lightboxIndex));
+    const galleryMain = event.target.closest('[data-gallery-main-button]');
+    if (galleryMain) {
+      openGalleryLightbox(galleryMain.closest('[data-gallery-screen]').dataset.galleryScreen);
+      return;
+    }
+    if (event.target.closest('[data-phone-reveal]')) {
+      openPhoneDialog();
+      return;
+    }
+    if (event.target.closest('[data-phone-close]')) {
+      $('#phoneDialog').close();
+      return;
+    }
     const heroShift = event.target.closest('[data-hero-shift]');
     if (heroShift && heroReady) setHero(heroIndex + Number(heroShift.dataset.heroShift));
   });
@@ -290,6 +372,7 @@
   $('.lightbox-next').addEventListener('click', () => shiftLightbox(1));
   $('#lightbox').addEventListener('click', (event) => { if (event.target === $('#lightbox')) $('#lightbox').close(); });
   $('#lightbox').addEventListener('keydown', (event) => { if (event.key === 'ArrowLeft') shiftLightbox(-1); if (event.key === 'ArrowRight') shiftLightbox(1); });
+  $('#phoneDialog').addEventListener('click', (event) => { if (event.target === $('#phoneDialog')) $('#phoneDialog').close(); });
   window.addEventListener('popstate', (event) => navigate(event.state?.route || 'home', { fromHistory: true, instant: true }));
   window.addEventListener('scroll', () => { if (currentRoute === 'home') $('#topbar').classList.toggle('scrolled', window.scrollY > 52); }, { passive: true });
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { closeDrawer(); closeLanguage(); } });
@@ -297,6 +380,17 @@
   let touchStart = 0;
   $('#lightbox').addEventListener('touchstart', (event) => { touchStart = event.touches[0].clientX; }, { passive: true });
   $('#lightbox').addEventListener('touchend', (event) => { const distance = event.changedTouches[0].clientX - touchStart; if (Math.abs(distance) > 45) shiftLightbox(distance > 0 ? -1 : 1); }, { passive: true });
+
+  $$('[data-gallery-swipe-area]').forEach((area) => {
+    let galleryTouchStart = 0;
+    area.addEventListener('touchstart', (event) => { galleryTouchStart = event.touches[0].clientX; }, { passive: true });
+    area.addEventListener('touchend', (event) => {
+      const distance = event.changedTouches[0].clientX - galleryTouchStart;
+      if (Math.abs(distance) < 42) return;
+      const route = area.closest('[data-gallery-screen]').dataset.galleryScreen;
+      selectGallery(route, galleryState[route] + (distance < 0 ? 1 : -1), true);
+    }, { passive: true });
+  });
 
   let heroReady = false;
   let heroIndex = 0;
@@ -351,7 +445,7 @@
 
   function initMotion() {
     const selector = '.concierge-section,.intro,.quick-section,.stay-signature,.editorial-room-preview,.location-teaser,.home-guide-section,.ota-section,.content-card,.guide-card,.appliance-card,.rule-item';
-    const mediaSelector = '.signature-photo,.editorial-mosaic button,.room-card,.gallery-item,.photo-card,.appliance-photo';
+    const mediaSelector = '.signature-photo,.editorial-mosaic button,.room-card,.gallery-viewer,.gallery-thumb,.photo-card,.appliance-photo';
     const observer = 'IntersectionObserver' in window && !reduceMotion
       ? new IntersectionObserver((entries) => entries.forEach((entry) => {
         if (entry.isIntersecting) {

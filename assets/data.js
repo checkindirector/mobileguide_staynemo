@@ -25,7 +25,9 @@
       stayTimesValue: L('체크인 16:00 · 체크아웃 11:00', 'Check-in 16:00 · Check-out 11:00', 'チェックイン 16:00・チェックアウト 11:00', '入住 16:00 · 退房 11:00'),
       selfCheckin: L('셀프 체크인', 'Self check-in', 'セルフチェックイン', '自助入住'),
       departure: L('체크아웃 안내', 'Departure guide', 'チェックアウト案内', '退房指南'),
-      callHost: L('호스트에게 바로 전화하기', 'Call the host', 'ホストに電話する', '致电房东'),
+      callHost: L('호스트에게 전화하기', 'Call the host', 'ホストに電話する', '致电房东'),
+      phoneDialogTitle: L('호스트에게 전화하기', 'Call the host', 'ホストに電話する', '致电房东'),
+      callNow: L('통화하기', 'Call now', '電話をかける', '拨打电话'),
       wifiNetwork: L('Wi-Fi 네트워크', 'Wi-Fi networks', 'Wi-Fi ネットワーク', 'Wi-Fi 网络'),
       wifiCopy: L('복사', 'Copy', 'コピー', '复制'),
       heroEyebrow: L('SEOUL PRIVATE STAY', 'SEOUL PRIVATE STAY', 'SEOUL PRIVATE STAY', 'SEOUL PRIVATE STAY'),
@@ -51,15 +53,16 @@
       otaTitle: L('곧 예약이 열립니다', 'Booking opens soon', 'まもなく予約開始', '即将开放预订'), otaBody: L('예약 플랫폼 등록을 준비하고 있습니다. 버튼은 링크가 연결되는 즉시 활성화됩니다.', 'Our booking pages are being prepared. Each button will activate as soon as its link is connected.', '予約サイトを準備中です。リンク接続後、各ボタンが有効になります。', '预订平台正在准备中，链接接入后按钮将立即启用。'),
       address: L('서울시 중구 을지로3가 291-37 · 3층', '3F, 291-37 Euljiro 3-ga, Jung-gu, Seoul', 'ソウル特別市中区乙支路3街291-37・3階', '首尔特别市中区乙支路3街 291-37 · 3层'), contactHost: L('호스트에게 문의하기', 'Contact the host', 'ホストに問い合わせる', '联系房东'),
       guideTitle: L('필요한 순간에<br>바로 찾는 안내', 'The right guide,<br>right when you need it', '必要なときに<br>すぐ見つかる案内', '需要时<br>立即找到答案'), guideBody: L('도착, 머무는 동안, 그리고 퇴실까지 꼭 필요한 내용을 모았습니다.', 'Everything you need for arrival, your stay, and departure.', '到着から滞在中、チェックアウトまで必要な情報をまとめました。', '汇集抵达、住宿期间及退房所需的所有信息。'),
-      galleryTitle: L('우리만의 한 층', 'A floor of our own', '私たちだけのワンフロア', '只属于我们的整层空间'), galleryBody: L('두 개의 침실과 다이닝 공간을 사진으로 둘러보세요.', 'Explore two bedrooms and the dining space.', '2つのベッドルームとダイニングをご覧ください。', '通过照片探索两间卧室与用餐空间。'), all: L('전체', 'All', 'すべて', '全部'), common: L('공용 공간', 'Living space', '共用空間', '公共空间'),
+      galleryTitle: L('객실 둘러보기', 'Room gallery', '客室を見る', '客房浏览'), galleryBody: L('두 개의 침실과 다이닝 공간을 사진으로 둘러보세요.', 'Explore two bedrooms and the dining space.', '2つのベッドルームとダイニングをご覧ください。', '通过照片探索两间卧室与用餐空间。'),
+      bathroom: L('화장실', 'Bathrooms', 'バスルーム', '浴室'), bathroomBody: L('화장실과 샤워실을 사진으로 확인하세요.', 'View the bathrooms and shower rooms.', 'トイレとシャワールームを写真でご確認ください。', '通过照片查看卫生间和淋浴间。'), swipePhotos: L('밀어서 사진 보기', 'Swipe to browse', 'スワイプして見る', '滑动浏览照片'),
       checkinGuide: L('체크인 안내', 'Check-in guide', 'チェックイン案内', '入住指南'), checkoutGuide: L('체크아웃 안내', 'Check-out guide', '退室案内', '退房指南'), transportTitle: L('오시는 길', 'Getting here', 'アクセス', '交通指南'), rulesTitle: L('모두가 편안한<br>머무름을 위해', 'For a comfortable<br>stay for everyone', 'みんなが心地よく<br>過ごすために', '为了每个人<br>舒适入住'),
       appliancesTitle: L('가전·시설 안내', 'Appliances & facilities', '家電・設備案内', '家电与设施指南'), appliancesBody: L('숙소 안 기기를 쉽고 안전하게 사용하세요.', 'Use every device easily and safely.', '室内の機器を安全にご利用ください。', '轻松安全地使用房内设备。'), contactTitle: L('도움이 필요하신가요?', 'Need a little help?', 'お困りですか？', '需要帮助吗？'),
-      home: L('홈', 'Home', 'ホーム', '首页'), gallery: L('공간', 'Space', '空間', '空间'), guide: L('안내', 'Guide', '案内', '指南'), location: L('위치', 'Location', 'アクセス', '位置'), contact: L('문의', 'Contact', 'お問い合わせ', '联系'),
+      home: L('홈', 'Home', 'ホーム', '首页'), gallery: L('객실 둘러보기', 'Room gallery', '客室を見る', '客房浏览'), guide: L('안내', 'Guide', '案内', '指南'), location: L('위치', 'Location', 'アクセス', '位置'), contact: L('문의', 'Contact', 'お問い合わせ', '联系'),
       drawerLine: L('네모난 방, 둥글게 모이는 우리', 'Square rooms, a circle of us', '四角い部屋で、輪になる私たち', '方正的房间，团聚的我们'),
       readySoon: L('예약 페이지를 준비하고 있습니다.', 'The booking page is being prepared.', '予約ページを準備中です。', '预订页面正在准备中。'), copied: L('복사했습니다.', 'Copied.', 'コピーしました。', '已复制。')
     },
     menu: [
-      ['home', 'home', 'home'], ['gallery', 'photo_library', 'gallery'], ['guide', 'menu_book', 'guide'], ['checkin', 'login', 'checkinOutGuide'], ['wifi', 'wifi', 'Wi-Fi'], ['transport', 'map', 'transportTitle'], ['rules', 'policy', 'rulesTitle'], ['appliances', 'devices', 'appliancesTitle'], ['contact', 'chat_bubble', 'contactTitle']
+      ['home', 'home', 'home'], ['gallery', 'photo_library', 'gallery'], ['bathroom', 'shower', 'bathroom'], ['guide', 'menu_book', 'guide'], ['checkin', 'login', 'checkinOutGuide'], ['wifi', 'wifi', 'Wi-Fi'], ['transport', 'map', 'transportTitle'], ['rules', 'policy', 'rulesTitle'], ['appliances', 'devices', 'appliancesTitle'], ['contact', 'chat_bubble', 'contactTitle']
     ],
     guideCards: [
       { route:'checkin', icon:'login', title:L('체크인', 'Check-in', 'チェックイン', '入住'), text:L('16:00 · 비대면 도어락', '16:00 · Self check-in', '16:00・セルフチェックイン', '16:00 · 自助入住'), color:'mustard' },
@@ -68,7 +71,7 @@
       { route:'transport', icon:'subway', title:L('교통·위치', 'Transport', '交通・位置', '交通与位置'), text:L('을지로3가역에서 찾아오기', 'From Euljiro 3-ga Station', '乙支路3街駅から', '从乙支路3街站前往'), color:'brown' },
       { route:'rules', icon:'policy', title:L('숙소 규칙', 'House rules', 'ハウスルール', '住宿规则'), text:L('금연 · 매너타임 · 취사', 'No smoking · Quiet hours · Cooking', '禁煙・静粛時間・調理', '禁烟 · 安静时间 · 烹饪'), color:'cream' },
       { route:'appliances', icon:'devices', title:L('가전·시설', 'Appliances', '家電・設備', '家电设施'), text:L('TV · 냉난방 · 세탁 · 주방', 'TV · Climate · Laundry · Kitchen', 'TV・空調・洗濯・キッチン', '电视 · 空调 · 洗衣 · 厨房'), color:'mustard' },
-      { route:'gallery', icon:'photo_library', title:L('공간 둘러보기', 'Explore the space', '空間を見る', '查看空间'), text:L('공용부와 두 개의 침실', 'Living space & two bedrooms', '共用部と2つの寝室', '公共空间与两间卧室'), color:'brown' },
+      { route:'gallery', icon:'photo_library', title:L('객실 둘러보기', 'Room gallery', '客室を見る', '客房浏览'), text:L('공용부와 두 개의 침실', 'Living space & two bedrooms', '共用部と2つの寝室', '公共空间与两间卧室'), color:'brown' },
       { route:'contact', icon:'chat_bubble', title:L('호스트 문의', 'Contact host', 'ホストに連絡', '联系房东'), text:L('예약 플랫폼 메시지 이용', 'Use your booking platform message', '予約サイトのメッセージを利用', '通过预订平台消息联系'), color:'dark' }
     ],
     gallery: [

@@ -13,7 +13,9 @@ test('brand and required mobile structure exist', () => {
   assert.match(html, /STAY NEMO/);
   assert.match(html, /bottom-nav/);
   assert.match(html, /data-screen="gallery"/);
+  assert.match(html, /data-screen="bathroom"/);
   assert.match(html, /data-screen="appliances"/);
+  assert.doesNotMatch(html, /gallery-tabs/);
 });
 
 test('four languages and configurable OTA links exist', () => {
@@ -37,14 +39,17 @@ test('approved brand palette and cache revision are applied', () => {
   }
   assert.equal(approved.approvalStatus, 'approved');
   assert.equal(approved.homeImages.main, '공용부_07.jpg');
-  assert.match(serviceWorker, /staynemo-v6/);
+  assert.match(serviceWorker, /staynemo-v7/);
   assert.match(html, /brand-intro-overlay/);
   assert.match(html, /logo-staynemo\.svg/);
   assert.match(css, /hero-main-professional\.webp/);
   assert.match(css, /hero-sub-professional\.webp/);
-  assert.match(css, /translate3d\(100%,0,0\)/);
+  assert.match(css, /hero\.alt \.hero-image-sub\{opacity:1!important/);
   assert.match(css, /wifi-network-grid/);
-  assert.match(html, /tel:01059043538/);
+  assert.doesNotMatch(html, /tel:01059043538/);
+  assert.match(html, /data-phone-reveal/);
+  assert.match(app, /phoneCallAction/);
+  assert.match(html, /menu-photo-hero/);
   assert.match(html, /checkinOutGuide/);
   for (const logo of ['airbnb.svg', 'booking-com.svg', 'agoda.svg', 'trip-com.svg']) assert.match(app, new RegExp(logo.replace('.', '\\.')));
 });
