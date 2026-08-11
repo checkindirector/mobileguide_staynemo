@@ -7,7 +7,8 @@
   let currentRoute = 'home';
   let lightboxItems = [];
   let lightboxIndex = 0;
-  const galleryState = { gallery: 0, bathroom: 0 };
+  const galleryState = { gallery: 0 };
+  let galleryCategory = 'common';
   const bathroomFiles = new Set(['room-nemo-08.webp', 'room-nemo-09.webp', 'room-nemo-10.webp', 'room-nemo-11.webp', 'room-nemo-12.webp', 'room-hada-05.webp', 'room-hada-06.webp']);
   let toastTimer;
 
@@ -37,8 +38,7 @@
     $$('.language-menu button').forEach((button) => button.classList.toggle('active', button.dataset.lang === language));
     renderDrawer();
     renderGuides();
-    renderGallery('gallery');
-    renderGallery('bathroom');
+    renderGallery(galleryCategory);
     renderAllContent();
     renderAppliances();
     renderOta();
@@ -97,14 +97,20 @@
     const platforms = [
       ['airbnb', 'Airbnb', 'airbnb.svg'], ['booking', 'Booking.com', 'booking-com.svg'], ['agoda', 'Agoda', 'agoda.svg'], ['trip', 'Trip.com', 'trip-com.svg']
     ];
-    $('#otaGrid').innerHTML = platforms.map(([key, name, logo]) => {
+    const compactMarkup = platforms.map(([key, name, logo]) => {
       const ready = Boolean(config.otaLinks[key]);
       return `<button type="button" class="platform-logo-button ${ready ? 'ready' : ''}" data-ota="${key}" aria-label="${name}"><img src="/assets/images/platforms/${logo}" alt="${name}"></button>`;
     }).join('');
+    $('#otaGrid').innerHTML = compactMarkup;
+    $('#otaBookingGrid').innerHTML = platforms.map(([key, name, logo]) => {
+      const ready = Boolean(config.otaLinks[key]);
+      return `<button type="button" class="ota-booking-button ${ready ? 'ready' : ''}" data-ota="${key}" aria-label="${name} ${ready ? 'OPEN' : 'COMING SOON'}"><span class="ota-booking-logo"><img src="/assets/images/platforms/${logo}" alt=""></span><span class="ota-booking-copy"><strong>${name}</strong><small>${ready ? 'OPEN' : 'COMING SOON'}</small></span><span class="ota-booking-arrow" aria-hidden="true">↗</span></button>`;
+    }).join('');
   }
 
-  function galleryItems(route) {
-    return data.gallery.filter((item) => route === 'bathroom' ? bathroomFiles.has(item[0]) : !bathroomFiles.has(item[0]));
+  function galleryItems(category = galleryCategory) {
+    if (category === 'bathroom') return data.gallery.filter((item) => bathroomFiles.has(item[0]));
+    return data.gallery.filter((item) => item[1] === category && !bathroomFiles.has(item[0]));
   }
 
   function bathroomTitle(file) {
@@ -120,8 +126,8 @@
     return tr(titles[file]);
   }
 
-  function galleryItemTitle(route, item) {
-    return route === 'bathroom' ? bathroomTitle(item[0]) : tr(item[2]);
+  function galleryItemTitle(item) {
+    return galleryCategory === 'bathroom' ? bathroomTitle(item[0]) : tr(item[2]);
   }
 
   function animateGalleryImage(screen, direction) {
@@ -134,13 +140,13 @@
     image.addEventListener('animationend', () => image.classList.remove(className), { once: true });
   }
 
-  function selectGallery(route, index, animate = false) {
-    const screen = $(`[data-gallery-screen="${route}"]`);
-    const items = galleryItems(route);
+  function selectGallery(index, animate = false) {
+    const screen = $('[data-gallery-screen="gallery"]');
+    const items = galleryItems();
     if (!screen || !items.length) return;
-    const previous = galleryState[route] || 0;
+    const previous = galleryState.gallery || 0;
     const next = (index + items.length) % items.length;
-    galleryState[route] = next;
+    galleryState.gallery = next;
     $$('[data-gallery-index]', screen).forEach((button, buttonIndex) => {
       const active = buttonIndex === next;
       button.classList.toggle('active', active);
@@ -149,8 +155,8 @@
     const item = items[next];
     const image = $('[data-gallery-main]', screen);
     image.src = `/assets/images/${item[0]}`;
-    image.alt = galleryItemTitle(route, item);
-    $('[data-gallery-title]', screen).textContent = galleryItemTitle(route, item);
+    image.alt = galleryItemTitle(item);
+    $('[data-gallery-title]', screen).textContent = galleryItemTitle(item);
     $('[data-gallery-count]', screen).textContent = `${next + 1} / ${items.length}`;
     if (animate && previous !== next) {
       animateGalleryImage(screen, next > previous || (previous === items.length - 1 && next === 0) ? 'next' : 'prev');
@@ -158,17 +164,19 @@
     }
   }
 
-  function renderGallery(route = 'gallery') {
-    const screen = $(`[data-gallery-screen="${route}"]`);
+  function renderGallery(category = galleryCategory) {
+    galleryCategory = category;
+    const screen = $('[data-gallery-screen="gallery"]');
     if (!screen) return;
-    const items = galleryItems(route);
-    $('[data-gallery-thumbs]', screen).innerHTML = items.map((item, index) => `<button class="gallery-thumb ${index === galleryState[route] ? 'active' : ''}" type="button" role="option" aria-selected="${index === galleryState[route]}" data-gallery-route="${route}" data-gallery-index="${index}"><img src="/assets/images/${item[0]}" alt="${galleryItemTitle(route, item)}" loading="lazy"></button>`).join('');
-    selectGallery(route, galleryState[route], false);
+    const items = galleryItems();
+    $$('[data-gallery-category]', screen).forEach((button) => button.setAttribute('aria-selected', String(button.dataset.galleryCategory === galleryCategory)));
+    $('[data-gallery-thumbs]', screen).innerHTML = items.map((item, index) => `<button class="gallery-thumb ${index === galleryState.gallery ? 'active' : ''}" type="button" role="option" aria-selected="${index === galleryState.gallery}" data-gallery-index="${index}"><img src="/assets/images/${item[0]}" alt="${galleryItemTitle(item)}" loading="lazy"></button>`).join('');
+    selectGallery(galleryState.gallery, false);
   }
 
-  function openGalleryLightbox(route) {
-    lightboxItems = galleryItems(route);
-    openLightbox(galleryState[route]);
+  function openGalleryLightbox() {
+    lightboxItems = galleryItems();
+    openLightbox(galleryState.gallery);
   }
 
   function openPhoneDialog() {
@@ -336,14 +344,20 @@
       copyText(copyButton.dataset.copy);
       return;
     }
+    const galleryCategoryButton = event.target.closest('[data-gallery-category]');
+    if (galleryCategoryButton) {
+      galleryState.gallery = 0;
+      renderGallery(galleryCategoryButton.dataset.galleryCategory);
+      return;
+    }
     const galleryThumb = event.target.closest('[data-gallery-index]');
     if (galleryThumb) {
-      selectGallery(galleryThumb.dataset.galleryRoute, Number(galleryThumb.dataset.galleryIndex), true);
+      selectGallery(Number(galleryThumb.dataset.galleryIndex), true);
       return;
     }
     const galleryMain = event.target.closest('[data-gallery-main-button]');
     if (galleryMain) {
-      openGalleryLightbox(galleryMain.closest('[data-gallery-screen]').dataset.galleryScreen);
+      openGalleryLightbox();
       return;
     }
     if (event.target.closest('[data-phone-reveal]')) {
@@ -387,8 +401,7 @@
     area.addEventListener('touchend', (event) => {
       const distance = event.changedTouches[0].clientX - galleryTouchStart;
       if (Math.abs(distance) < 42) return;
-      const route = area.closest('[data-gallery-screen]').dataset.galleryScreen;
-      selectGallery(route, galleryState[route] + (distance < 0 ? 1 : -1), true);
+      selectGallery(galleryState.gallery + (distance < 0 ? 1 : -1), true);
     }, { passive: true });
   });
 

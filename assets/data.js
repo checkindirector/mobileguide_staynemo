@@ -53,8 +53,8 @@
       otaTitle: L('곧 예약이 열립니다', 'Booking opens soon', 'まもなく予約開始', '即将开放预订'), otaBody: L('예약 플랫폼 등록을 준비하고 있습니다. 버튼은 링크가 연결되는 즉시 활성화됩니다.', 'Our booking pages are being prepared. Each button will activate as soon as its link is connected.', '予約サイトを準備中です。リンク接続後、各ボタンが有効になります。', '预订平台正在准备中，链接接入后按钮将立即启用。'),
       address: L('서울시 중구 을지로3가 291-37 · 3층', '3F, 291-37 Euljiro 3-ga, Jung-gu, Seoul', 'ソウル特別市中区乙支路3街291-37・3階', '首尔特别市中区乙支路3街 291-37 · 3层'), contactHost: L('호스트에게 문의하기', 'Contact the host', 'ホストに問い合わせる', '联系房东'),
       guideTitle: L('필요한 순간에<br>바로 찾는 안내', 'The right guide,<br>right when you need it', '必要なときに<br>すぐ見つかる案内', '需要时<br>立即找到答案'), guideBody: L('도착, 머무는 동안, 그리고 퇴실까지 꼭 필요한 내용을 모았습니다.', 'Everything you need for arrival, your stay, and departure.', '到着から滞在中、チェックアウトまで必要な情報をまとめました。', '汇集抵达、住宿期间及退房所需的所有信息。'),
-      galleryTitle: L('객실 둘러보기', 'Room gallery', '客室を見る', '客房浏览'), galleryBody: L('두 개의 침실과 다이닝 공간을 사진으로 둘러보세요.', 'Explore two bedrooms and the dining space.', '2つのベッドルームとダイニングをご覧ください。', '通过照片探索两间卧室与用餐空间。'),
-      bathroom: L('화장실', 'Bathrooms', 'バスルーム', '浴室'), bathroomBody: L('화장실과 샤워실을 사진으로 확인하세요.', 'View the bathrooms and shower rooms.', 'トイレとシャワールームを写真でご確認ください。', '通过照片查看卫生间和淋浴间。'), swipePhotos: L('밀어서 사진 보기', 'Swipe to browse', 'スワイプして見る', '滑动浏览照片'),
+      galleryTitle: L('객실 둘러보기', 'Room gallery', '客室を見る', '客房浏览'), galleryBody: L('NEMO와 HADA 객실, 화장실을 분류별로 둘러보세요.', 'Browse the NEMO and HADA rooms and bathrooms by category.', 'NEMO・HADAの客室とバスルームをカテゴリー別にご覧ください。', '按分类浏览 NEMO、HADA 客房及浴室。'),
+      dining: L('다이닝', 'Dining', 'ダイニング', '餐厅'), bathroom: L('화장실', 'Bathrooms', 'バスルーム', '浴室'), bathroomBody: L('화장실과 샤워실을 사진으로 확인하세요.', 'View the bathrooms and shower rooms.', 'トイレとシャワールームを写真でご確認ください。', '通过照片查看卫生间和淋浴间。'), swipePhotos: L('밀어서 사진 보기', 'Swipe to browse', 'スワイプして見る', '滑动浏览照片'),
       checkinGuide: L('체크인 안내', 'Check-in guide', 'チェックイン案内', '入住指南'), checkoutGuide: L('체크아웃 안내', 'Check-out guide', '退室案内', '退房指南'), transportTitle: L('오시는 길', 'Getting here', 'アクセス', '交通指南'), rulesTitle: L('모두가 편안한<br>머무름을 위해', 'For a comfortable<br>stay for everyone', 'みんなが心地よく<br>過ごすために', '为了每个人<br>舒适入住'),
       appliancesTitle: L('가전·시설 안내', 'Appliances & facilities', '家電・設備案内', '家电与设施指南'), appliancesBody: L('숙소 안 기기를 쉽고 안전하게 사용하세요.', 'Use every device easily and safely.', '室内の機器を安全にご利用ください。', '轻松安全地使用房内设备。'), contactTitle: L('도움이 필요하신가요?', 'Need a little help?', 'お困りですか？', '需要帮助吗？'),
       home: L('홈', 'Home', 'ホーム', '首页'), gallery: L('객실 둘러보기', 'Room gallery', '客室を見る', '客房浏览'), guide: L('안내', 'Guide', '案内', '指南'), location: L('위치', 'Location', 'アクセス', '位置'), contact: L('문의', 'Contact', 'お問い合わせ', '联系'),
@@ -62,7 +62,7 @@
       readySoon: L('예약 페이지를 준비하고 있습니다.', 'The booking page is being prepared.', '予約ページを準備中です。', '预订页面正在准备中。'), copied: L('복사했습니다.', 'Copied.', 'コピーしました。', '已复制。')
     },
     menu: [
-      ['home', 'home', 'home'], ['gallery', 'photo_library', 'gallery'], ['bathroom', 'shower', 'bathroom'], ['guide', 'menu_book', 'guide'], ['checkin', 'login', 'checkinOutGuide'], ['wifi', 'wifi', 'Wi-Fi'], ['transport', 'map', 'transportTitle'], ['rules', 'policy', 'rulesTitle'], ['appliances', 'devices', 'appliancesTitle'], ['contact', 'chat_bubble', 'contactTitle']
+      ['home', 'home', 'home'], ['gallery', 'photo_library', 'gallery'], ['guide', 'menu_book', 'guide'], ['checkin', 'login', 'checkinOutGuide'], ['wifi', 'wifi', 'Wi-Fi'], ['transport', 'map', 'transportTitle'], ['rules', 'policy', 'rulesTitle'], ['appliances', 'devices', 'appliancesTitle'], ['contact', 'chat_bubble', 'contactTitle']
     ],
     guideCards: [
       { route:'checkin', icon:'login', title:L('체크인', 'Check-in', 'チェックイン', '入住'), text:L('16:00 · 비대면 도어락', '16:00 · Self check-in', '16:00・セルフチェックイン', '16:00 · 自助入住'), color:'mustard' },

@@ -1,5 +1,5 @@
-const CACHE = 'staynemo-v7';
-const CORE = ['/', '/index.html', '/assets/styles.css?v=7', '/assets/data.js?v=7', '/assets/app.js?v=7', '/manifest.webmanifest', '/assets/fonts/oxanium-latin.woff2', '/assets/fonts/material-symbols-outlined.woff2', '/assets/images/logo-staynemo.svg', '/assets/images/logo-staynemo-symbol.svg', '/assets/images/hero-main-professional.webp', '/assets/images/hero-sub-professional.webp', '/assets/images/platforms/airbnb.svg', '/assets/images/platforms/booking-com.svg', '/assets/images/platforms/agoda.svg', '/assets/images/platforms/trip-com.svg'];
+const CACHE = 'staynemo-v9';
+const CORE = ['/', '/index.html', '/assets/styles.css?v=9', '/assets/data.js?v=9', '/assets/app.js?v=9', '/manifest.webmanifest', '/assets/fonts/oxanium-latin.woff2', '/assets/fonts/material-symbols-outlined.woff2', '/assets/images/logo-staynemo.svg', '/assets/images/logo-staynemo-symbol.svg', '/assets/images/hero-main-professional.webp', '/assets/images/hero-sub-professional.webp', '/assets/images/platforms/airbnb.svg', '/assets/images/platforms/booking-com.svg', '/assets/images/platforms/agoda.svg', '/assets/images/platforms/trip-com.svg'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(CORE)).then(() => self.skipWaiting())));
 self.addEventListener('activate', event => event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', event => {

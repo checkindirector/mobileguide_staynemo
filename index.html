@@ -17,7 +17,7 @@
   <link rel="icon" href="/assets/images/logo-staynemo-symbol.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="preload" href="/assets/images/hero-main-professional.webp" as="image" type="image/webp">
-  <link rel="stylesheet" href="/assets/styles.css?v=7">
+  <link rel="stylesheet" href="/assets/styles.css?v=9">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"LodgingBusiness","name":"STAY NEMO","alternateName":"스테이 네모","address":{"@type":"PostalAddress","streetAddress":"을지로3가 291-37","addressLocality":"중구","addressRegion":"서울특별시","addressCountry":"KR"},"numberOfRooms":2,"occupancy":{"@type":"QuantitativeValue","maxValue":10}}
   </script>
@@ -141,6 +141,13 @@
           </div>
         </section>
 
+        <section class="ota-section section-pad" aria-labelledby="otaTitle">
+          <p class="section-label">BOOK YOUR STAY</p>
+          <h2 id="otaTitle" data-i18n="otaTitle">곧 예약이 열립니다</h2>
+          <p data-i18n="otaBody">예약 플랫폼 등록을 준비하고 있습니다. 버튼은 링크가 연결되는 즉시 활성화됩니다.</p>
+          <div class="ota-booking-grid" id="otaBookingGrid" aria-label="예약 플랫폼"></div>
+        </section>
+
         <footer class="home-footer">
           <img class="footer-logo" src="/assets/images/logo-staynemo.svg" alt="STAY NEMO MYEONGDONG">
           <p data-i18n="address">서울시 중구 을지로3가 291-37 · 3층</p>
@@ -160,22 +167,13 @@
       <section class="screen inner-screen gallery-screen" data-screen="gallery" data-gallery-screen="gallery" aria-labelledby="galleryTitle">
         <div class="gallery-shell page-pad">
           <div class="gallery-head"><p class="section-label">ROOM PHOTOS</p><h1 id="galleryTitle" data-i18n="gallery">객실 둘러보기</h1><p data-i18n="galleryBody">두 개의 침실과 다이닝 공간을 사진으로 둘러보세요.</p></div>
+          <div class="gallery-category-tabs" role="tablist" aria-label="객실 분류">
+            <button type="button" role="tab" aria-selected="true" data-gallery-category="common" data-i18n="dining">다이닝</button>
+            <button type="button" role="tab" aria-selected="false" data-gallery-category="nemo">NEMO</button>
+            <button type="button" role="tab" aria-selected="false" data-gallery-category="hada">HADA</button>
+            <button type="button" role="tab" aria-selected="false" data-gallery-category="bathroom" data-i18n="bathroom">화장실</button>
+          </div>
           <div class="gallery-thumbs" data-gallery-thumbs role="listbox" aria-label="객실 사진 선택"></div>
-          <figure class="gallery-viewer">
-            <div class="gallery-main-wrap" data-gallery-swipe-area>
-              <button class="gallery-main-button" type="button" data-gallery-main-button aria-label="사진 크게 보기"><img data-gallery-main alt="" draggable="false"></button>
-              <span class="gallery-count" data-gallery-count></span>
-              <span class="gallery-swipe-hint"><span class="mi">swipe</span><span data-i18n="swipePhotos">밀어서 사진 보기</span></span>
-            </div>
-            <figcaption><strong data-gallery-title></strong><span data-gallery-desc>STAY NEMO · MYEONGDONG</span></figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="screen inner-screen gallery-screen" data-screen="bathroom" data-gallery-screen="bathroom" aria-labelledby="bathroomTitle">
-        <div class="gallery-shell page-pad">
-          <div class="gallery-head"><p class="section-label">BATHROOM</p><h1 id="bathroomTitle" data-i18n="bathroom">화장실</h1><p data-i18n="bathroomBody">화장실과 샤워실을 사진으로 확인하세요.</p></div>
-          <div class="gallery-thumbs" data-gallery-thumbs role="listbox" aria-label="화장실 사진 선택"></div>
           <figure class="gallery-viewer">
             <div class="gallery-main-wrap" data-gallery-swipe-area>
               <button class="gallery-main-button" type="button" data-gallery-main-button aria-label="사진 크게 보기"><img data-gallery-main alt="" draggable="false"></button>
@@ -223,7 +221,7 @@
   </dialog>
   <dialog class="lightbox" id="lightbox"><button class="lightbox-close" type="button" aria-label="사진 닫기"><span class="mi">close</span></button><button class="lightbox-prev" type="button" aria-label="이전 사진"><span class="mi">chevron_left</span></button><figure><img id="lightboxImage" alt=""><figcaption id="lightboxCaption"></figcaption></figure><button class="lightbox-next" type="button" aria-label="다음 사진"><span class="mi">chevron_right</span></button></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="/assets/data.js?v=7"></script>
-  <script src="/assets/app.js?v=7"></script>
+  <script src="/assets/data.js?v=9"></script>
+  <script src="/assets/app.js?v=9"></script>
 </body>
 </html>

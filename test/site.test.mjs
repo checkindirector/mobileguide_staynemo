@@ -13,9 +13,12 @@ test('brand and required mobile structure exist', () => {
   assert.match(html, /STAY NEMO/);
   assert.match(html, /bottom-nav/);
   assert.match(html, /data-screen="gallery"/);
-  assert.match(html, /data-screen="bathroom"/);
+  assert.doesNotMatch(html, /data-screen="bathroom"/);
   assert.match(html, /data-screen="appliances"/);
   assert.doesNotMatch(html, /gallery-tabs/);
+  assert.match(html, /data-gallery-category="common"[\s\S]*data-gallery-category="nemo"[\s\S]*data-gallery-category="hada"[\s\S]*data-gallery-category="bathroom"/);
+  assert.match(html, /id="otaBookingGrid"/);
+  assert.match(html, /id="otaGrid"/);
 });
 
 test('four languages and configurable OTA links exist', () => {
@@ -39,7 +42,7 @@ test('approved brand palette and cache revision are applied', () => {
   }
   assert.equal(approved.approvalStatus, 'approved');
   assert.equal(approved.homeImages.main, '공용부_07.jpg');
-  assert.match(serviceWorker, /staynemo-v7/);
+  assert.match(serviceWorker, /staynemo-v9/);
   assert.match(html, /brand-intro-overlay/);
   assert.match(html, /logo-staynemo\.svg/);
   assert.match(css, /hero-main-professional\.webp/);
