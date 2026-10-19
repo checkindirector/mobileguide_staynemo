@@ -1,0 +1,45 @@
+<svg lang="ja" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 900" role="img" aria-labelledby="title desc">
+  <title id="title">SamsungスマートTV 配信アプリガイド</title>
+  <desc id="desc">ホームを押し、アプリ一覧で方向キーを使って選び、中央の決定ボタンを押します。</desc>
+  <rect width="720" height="900" fill="#f4f0e8"/>
+  <text x="54" y="68" font-family="Arial,Microsoft YaHei,Meiryo,sans-serif" font-size="17" letter-spacing="3" fill="#6d4a34">SAMSUNG スマートTV</text>
+  <text x="54" y="119" font-family="Arial,Microsoft YaHei,Meiryo,sans-serif" font-size="34" font-weight="700" fill="#26231f">配信アプリを開く</text>
+
+  <g transform="translate(54 166)">
+    <rect width="612" height="278" rx="20" fill="#26231f"/>
+    <rect x="24" y="24" width="564" height="230" rx="8" fill="#ddd8cf"/>
+    <text x="47" y="58" font-family="Arial,Microsoft YaHei,Meiryo,sans-serif" font-size="14" font-weight="700" fill="#6d4a34">TVホーム</text>
+    <rect x="47" y="78" width="516" height="82" rx="10" fill="#b9b1a5"/>
+    <path d="M72 133l22-31 22 31z" fill="#f4f0e8"/>
+    <rect x="72" y="132" width="44" height="14" rx="3" fill="#f4f0e8"/>
+    <text x="132" y="125" font-family="Arial,Microsoft YaHei,Meiryo,sans-serif" font-size="19" font-weight="700" fill="#26231f">ホーム画面</text>
+    <text x="132" y="146" font-family="Arial,Microsoft YaHei,Meiryo,sans-serif" font-size="13" fill="#514c45">下のアプリ一覧へ移動</text>
+    <g transform="translate(47 183)" font-family="Arial,Microsoft YaHei,Meiryo,sans-serif" font-size="12" font-weight="700" text-anchor="middle">
+      <rect width="117" height="48" rx="8" fill="#b08a4a"/><text x="58.5" y="30" fill="#fff">NETFLIX</text>
+      <rect x="131" width="117" height="48" rx="8" fill="#fff" stroke="#c9c0b3"/><text x="189.5" y="30" fill="#26231f">YouTube</text>
+      <rect x="262" width="117" height="48" rx="8" fill="#6d4a34"/><text x="320.5" y="30" fill="#fff">Disney+</text>
+      <rect x="393" width="123" height="48" rx="8" fill="#fff" stroke="#c9c0b3"/><text x="454.5" y="30" fill="#26231f">その他</text>
+    </g>
+  </g>
+
+  <path d="M360 467v38m-12-12 12 12 12-12" fill="none" stroke="#b08a4a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g transform="translate(54 530)" font-family="Arial,Microsoft YaHei,Meiryo,sans-serif">
+    <rect width="612" height="249" rx="18" fill="#fff" stroke="#d4c8b8"/>
+    <g transform="translate(24 22)">
+      <circle cx="35" cy="35" r="35" fill="#26231f"/><path d="M20 35l15-13 15 13v17H39V41h-8v11H20z" fill="#fff"/>
+      <text x="91" y="30" font-size="15" font-weight="700" fill="#6d4a34">01 · ホーム</text>
+      <text x="91" y="57" font-size="22" font-weight="700" fill="#26231f">リモコンのホームを押します。</text>
+    </g>
+    <line x1="24" y1="102" x2="588" y2="102" stroke="#e0d8cc"/>
+    <g transform="translate(24 118)">
+      <circle cx="35" cy="35" r="35" fill="#f4f0e8" stroke="#b08a4a" stroke-width="2"/>
+      <path d="M35 15v12m0 16v12M15 35h12m16 0h12" stroke="#6d4a34" stroke-width="5" stroke-linecap="round"/><circle cx="35" cy="35" r="7" fill="#b08a4a"/>
+      <text x="91" y="30" font-size="15" font-weight="700" fill="#6d4a34">02 · 移動 → 決定</text>
+      <text x="91" y="57" font-size="22" font-weight="700" fill="#26231f">アプリを選び、中央の決定を押します。</text>
+    </g>
+    <rect x="24" y="205" width="564" height="28" rx="14" fill="#26231f"/>
+    <text x="306" y="224" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">見つからない場合は、ホームの「Apps」へ。</text>
+  </g>
+  <text x="54" y="852" font-family="Arial,Microsoft YaHei,Meiryo,sans-serif" font-size="16" letter-spacing="2" fill="#857c72">STAY NEMO · 簡単ガイド</text>
+</svg>

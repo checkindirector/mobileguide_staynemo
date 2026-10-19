@@ -1,0 +1,16 @@
+{
+  "revision": "v67",
+  "date": "2026-10-01",
+  "changes": [
+    "18 localized vector guides added: Japanese and Simplified Chinese TV, induction, hood and microwave; English, Japanese, Simplified and Traditional Chinese air-conditioner and washer guest summaries",
+    "English temperature label shortened to Temp. + / −, preserving target and leader line",
+    "Language menu anchored 14px from the right edge of the site header at mobile and desktop widths"
+  ],
+  "preserved": ["Korean manufacturer reference pages", "original equipment photographs and physical labels", "official source links", "existing brand and social thumbnail", "OTA coming-soon configuration"],
+  "tests": {"automated": 13, "languageRouteCombinations": 45, "uniqueGuideAndPhotoAssets": 103},
+  "notes": [
+    "Translated guest-summary diagrams are not represented as manufacturer-issued manuals.",
+    "Real OTA booking URLs have not been supplied; four buttons intentionally remain Coming soon.",
+    "Browser checks use Chromium mobile viewport emulation, not physical iOS/Android hardware."
+  ]
+}

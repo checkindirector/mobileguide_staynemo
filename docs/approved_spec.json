@@ -1,7 +1,7 @@
 {
   "project": "STAY NEMO mobile website and guest guide",
   "approvalStatus": "approved",
-  "approvedAt": "2026-08-11",
+  "approvedAt": "2026-08-19",
   "brand": {
     "name": "STAY NEMO",
     "eyebrow": "SEOUL PRIVATE STAY",
@@ -16,24 +16,54 @@
     "recommendedRatio": "50 / 25 / 15 / 10"
   },
   "homeImages": {
-    "main": "공용부_07.jpg",
-    "sub": "공용부_04.jpg",
-    "productionMain": "hero-main-professional.webp",
-    "productionSub": "hero-sub-professional.webp",
-    "treatment": "Professional hospitality-photo color, exposure and lens correction; sub image additionally leveled and keystone-corrected."
+    "sequence": [
+      "photographer-202608/livingroom-03-home-crop-v50.png",
+      "photographer-202608/livingroom-01-home-crop-v54.png",
+      "photographer-202608/livingroom-04-home-crop-v54.png",
+      "photographer-202608/R1-NEMO-home-crop-v56.png"
+    ],
+    "mobileTreatment": "All four user-approved portrait crops fill the full hero with object-fit:cover and no black space above the photographs.",
+    "treatment": "Four-image sequence: livingroom 03 remains the main image, followed by livingroom 01, livingroom 04 and the user-supplied R1 NEMO bedroom crop. Livingroom 02 is excluded from the home hero."
   },
   "logo": {
-    "sourceReferences": ["front-door.jpg", "ground-door.jpg", "elevator-floor3.jpg"],
-    "productionAsset": "logo-staynemo.svg",
-    "method": "Vector reconstruction of the installed property signage."
+    "sourceReferences": [
+      "로고.ai"
+    ],
+    "productionAsset": "logo-staynemo-official.png",
+    "symbolAsset": "logo-staynemo-symbol-official.png",
+    "method": "Direct transparent extraction from the official user-supplied logo master."
   },
   "masterParity": {
     "primaryMaster": "ANOTHER HOUSE",
-    "requiredHomeElements": ["first-session logo intro", "two-image timed hero", "concierge search", "stay essentials", "editorial room mosaic", "location", "frequent guide links", "OTA help panel", "brand footer"]
+    "requiredHomeElements": [
+      "first-session logo intro",
+      "multi-image timed hero",
+      "stay essentials",
+      "editorial room mosaic",
+      "location",
+      "frequent guide links",
+      "OTA help panel",
+      "brand footer"
+    ]
   },
   "indexing": "public_marketing_site",
-  "languages": ["ko", "en", "ja", "zh"],
-  "galleryCategories": ["common", "NEMO", "HADA"],
+  "languages": [
+    "ko",
+    "en",
+    "ja",
+    "zh"
+  ],
+  "languageAudit": {
+    "coverage": "All localized data objects require ko, en, ja and zh values.",
+    "carouselTreatment": "Arrival and appliance carousels show a visible caption in the selected language; TV and air-conditioner callouts are rendered dynamically per language.",
+    "accessibility": "Static navigation, dialog, photo and control labels follow the selected language."
+  },
+  "galleryCategories": [
+    "common",
+    "NEMO",
+    "HADA",
+    "bathroom"
+  ],
   "otaBehavior": "Show Coming Soon while URL is null; activate automatically when URL is supplied.",
   "privacy": {
     "publicPhone": true,
@@ -42,6 +72,13 @@
     "publicEntrancePassword": false,
     "contactMethod": "direct host phone call and booking platform messages"
   },
-  "sitePurpose": ["marketing", "guest guide"],
-  "approvedRevision": "2026-08-11 readability, combined arrival/departure guide, horizontal hero, direct phone, and OTA footer"
+  "sitePurpose": [
+    "marketing",
+    "guest guide"
+  ],
+  "approvedRevision": "2026-10-01 v70 removes AI concierge UI, guide-search logic and translations per user request; no OpenAI connection or Vercel project environment variables found.",
+  "aiConcierge": {
+    "enabled": false,
+    "reason": "User requested removal of home AI box, floating launcher and all chatbot connections."
+  }
 }

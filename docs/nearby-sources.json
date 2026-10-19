@@ -1,0 +1,13 @@
+{
+  "verifiedAt": "2026-08-11",
+  "origin": "Stay NEMO, 3F, 291-37 Euljiro 3-ga, Jung-gu, Seoul",
+  "selectionLogic": "Same pattern as Another House: Host's Pick first, category filters, text search, Naver and Google map actions, official detail links where available, and a visit-day hours warning.",
+  "restaurantPhotos": [
+    {"file":"cheongwaok.jpg","place":"청와옥 을지로3가직영점","source":"https://www.konest.com/contents/gourmet_mise_detail.html?id=31154"},
+    {"file":"dongwon.jpg","place":"동원집","source":"https://www.timeoutkorea.kr/seoul/ko/restaurants/%EB%8F%99%EC%9B%90%EC%A7%91"},
+    {"file":"munhwaok.jpg","place":"문화옥","source":"https://love.seoul.go.kr/articles/1383"},
+    {"file":"horangii.jpg","place":"호랑이","source":"https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=186520"},
+    {"note":"Coffee Hanyakbang, Seoulzip, Buchon Yukhoe, Soonhee Bindaetteok, Jin Ok-hwa and Cheongsudang images reuse the existing Another House source-tracked set because the venues overlap this neighborhood guide."}
+  ],
+  "tourPhotos": {"sourceType":"Wikimedia Commons / KOGL / Pexels source-tracked files reused from Another House","credits":"Each tour card carries its own visible photo credit and source link."}
+}

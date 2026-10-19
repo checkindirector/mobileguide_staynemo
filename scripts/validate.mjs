@@ -12,13 +12,36 @@ for (const required of ['assets/styles.css', 'assets/data.js', 'assets/app.js', 
 }
 
 const source = ['index.html', 'assets/styles.css', 'assets/data.js', 'assets/app.js'].map(file => fs.readFileSync(path.join(root, file), 'utf8')).join('\n');
+// The AI concierge has been retired; fail deployment if its runtime is restored.
+const retiredAi = /concierge|chatPanel|chatInput|openChatFab|renderSearchResults|api\.openai\.com|OPENAI_API_KEY|@ai-sdk\/openai|ai-gateway\.vercel\.sh/i;
+if (retiredAi.test(source)) throw new Error('Retired AI chatbot runtime found');
+const packageInfo = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+for (const name of Object.keys({ ...packageInfo.dependencies, ...packageInfo.devDependencies })) {
+  if (name === 'openai' || name === 'ai' || name.startsWith('@ai-sdk/')) throw new Error(`Retired AI dependency found: ${name}`);
+}
 for (const forbidden of ['Another House', 'EXTAY', 'undefined', 'TODO']) {
   if (source.includes(forbidden)) throw new Error(`Forbidden text found: ${forbidden}`);
 }
 if (!source.includes('STAY NEMO')) throw new Error('Brand text missing');
 if (!source.includes('otaLinks')) throw new Error('OTA link configuration missing');
-if (!source.includes('hero-main-professional.webp') || !source.includes('hero-sub-professional.webp')) throw new Error('Professionally treated hero sequence missing');
-if (!source.includes('logo-staynemo.svg')) throw new Error('Property-signage logo asset missing');
+for (const heroPhoto of ['hero-main-professional.webp', 'photographer-202608/livingroom-02.webp', 'photographer-202608/livingroom-04.webp', 'photographer-202608/R1-NEMO-03.webp']) {
+  if (!source.includes(heroPhoto)) throw new Error(`Approved hero asset missing: ${heroPhoto}`);
+}
+for (const [guide, guidePath] of [
+  ['doorlock-night-clean-v2.png', 'assets/images/doorlock-night-clean-v2.png'],
+  ['aircon-remote-source-v61.webp', 'assets/images/guides/aircon-remote-source-v61.webp'],
+  ['official-samsung-ko-v61.webp', 'assets/images/guides/official-samsung-ko-v61.webp'],
+  ['official-samsung-en-v61.webp', 'assets/images/guides/official-samsung-en-v61.webp'],
+  ['tv-remote-clean-v46.png', 'assets/images/guides/tv-remote-clean-v46.png']
+]) {
+  const isArchivedReference = guide === 'official-samsung-en-v61.webp';
+  if ((!isArchivedReference && !source.includes(guide)) || !fs.existsSync(path.join(root, guidePath))) {
+    throw new Error(`Corrected guide asset missing: ${guidePath}`);
+  }
+}
+if (!source.includes('logo-staynemo-official.png') || !source.includes('logo-staynemo-symbol-official.png')) {
+  throw new Error('Official STAY NEMO logo assets missing');
+}
 for (const color of ['#42413e', '#f4f0e8', '#6d4a34', '#b08a4a', '#26231f']) {
   if (!source.toLowerCase().includes(color)) throw new Error(`Approved brand color missing: ${color}`);
 }

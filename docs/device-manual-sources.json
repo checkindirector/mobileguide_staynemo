@@ -1,10 +1,10 @@
 {
   "verifiedAt": "2026-08-11",
   "devices": [
-    {"name":"Samsung Smart TV","model":"KU43F6050FFXKR","basis":"client source and control photo","guideType":"concise photo-based guest steps"},
-    {"name":"LG TROMM washer","model":"FY9WTB","basis":"client source and appliance photo","guideType":"concise photo-based guest steps"},
-    {"name":"Haatz induction cooktop","model":null,"basis":"client source and appliance photo","guideType":"safety-first photo-based guest steps"},
-    {"name":"Cooing microwave","model":null,"basis":"client source and appliance photo","guideType":"safety-first photo-based guest steps"},
-    {"name":"System air conditioner","model":null,"basis":"wall-control photos","guideType":"control-photo guest steps"}
+    {"name":"Samsung Smart TV","model":"KU43F6050FFXKR","source":"https://www.samsung.com/sec/business/tvs/fhd-f6050f-d2c/KU43F6050FFXKR/","secondarySource":"https://www.samsung.com/sec/tvs/smart-tv/samsung-tv-apps/","guideType":"detailed guest diagram based on Samsung's Home-to-app flow and the on-site remote layout"},
+    {"name":"LG TROMM washer dryer","model":"FY9WTB","source":"https://www.lge.co.kr/washing-machines/fy9wtb","guideType":"official manual pages reused from the verified Another House guide set"},
+    {"name":"Two-zone induction and Haatz hood","model":"Haatz IH-232S / Haatz B60","source":"https://www.e-himart.co.kr/app/goods/goodsDetail?goodsNo=0017552949","secondarySource":"https://m.haatzmall.com/goods/goods_view.php?goodsNo=28","guideType":"models matched against the distinctive two-zone crosshair controls and the B60 rocker-switch system-hood layout in the on-site photo"},
+    {"name":"Cooing microwave","model":"MM-E20RBKC","source":"https://www.rra.go.kr/ko/license/A_b_popup_keyno.do?key_no=R-R-mdk-AM720C2AD-PM0B","guideType":"same verified control diagram and operating sequence as Another House"},
+    {"name":"Samsung system air conditioner","model":"AM060BN1PBH1 / AM052BN1PBH1 / AM032BN1PBH1","source":"https://www.samsung.com/sec/support/","guideType":"official Samsung wired-controller guide visual; indoor-unit models from the property source set"}
   ]
 }
